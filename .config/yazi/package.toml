@@ -1,0 +1,17 @@
+[[plugin.deps]]
+use = "macydnah/office"
+rev = "41ebef8"
+hash = "1d856e7731bd5b3c5ed56112f36b256c"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "2301ff8"
+hash = "5f76a476ea416c9f379a1a451bdcd3d2"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "2301ff8"
+hash = "91bf6f0332ee6d72eab0dc2e64382021"
+
+[flavor]
+deps = []

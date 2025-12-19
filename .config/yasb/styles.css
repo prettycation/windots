@@ -1,0 +1,284 @@
+/* ================================================================================== */
+/* YASB 样式表 - Catppuccin Mocha Theme (最终修正版)
+/* ================================================================================== */
+
+/* --- 1. 全局变量与根样式 --- */
+:root {
+  --rosewater: #f5e0dc;
+  --flamingo: #f2cdcd;
+  --pink: #f5c2e7;
+  --mauve: #cba6f7;
+  --red: #f38ba8;
+  --maroon: #eba0ac;
+  --peach: #fab387;
+  --yellow: #f9e2af;
+  --green: #a6e3a1;
+  --teal: #94e2d5;
+  --sky: #89dceb;
+  --sapphire: #74c7ec;
+  --blue: #89b4fa;
+  --lavender: #b4befe;
+  --text: #cdd6f4;
+  --subtext1: #bac2de;
+  --subtext0: #a6adc8;
+  --overlay2: #9399b2;
+  --overlay1: #7f849c;
+  --overlay0: #6c7086;
+  --surface2: #585b70;
+  --surface1: #45475a;
+  --surface0: #313244;
+  --base: #1e1e2e;
+  --mantle: #181825;
+  --crust: #11111b;
+}
+
+* {
+  font-size: 12px;
+  color: var(--subtext0);
+  font-weight: 600;
+  /* [恢复] 恢复你原来的字体设置 */
+  font-family: "JetBrainsMono NF", sans-serif;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.yasb-bar {
+  padding: 0;
+  margin: 0;
+}
+.widget .icon {
+  font-size: 16px;
+}
+.widget .label {
+  color: white;
+}
+
+/* --- GlazeWM 工作区 --- */
+.glazewm-workspaces {
+  margin-right: 4px;
+}
+.glazewm-workspaces .ws-btn {
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  margin: 0 2px;
+  padding: 0 10px;
+  border-radius: 8px;
+  height: 28px;
+  min-width: 28px;
+}
+.glazewm-workspaces .ws-btn.populated {
+  color: white;
+}
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty {
+  background-color: var(--blue);
+  border-color: var(--blue);
+  /* 当前工作区数字颜色改为深色，保证对比度 */
+  color: var(--base);
+}
+
+/* --- 活动窗口 --- */
+.active-window-widget {
+  background-color: var(--mauve);
+  border-radius: 8px;
+  padding: 0 12px;
+}
+.active-window-widget .label {
+  color: var(--base);
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* --- 系统托盘 --- */
+.systray {
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: 8px;
+  margin-right: 4px;
+  /* 调整内边距，让图标有呼吸空间 */
+  padding: 3px;
+}
+
+/* 基础图标按钮样式 */
+.systray .button {
+  padding: 2px;
+  border-radius: 6px; /* 为悬浮高亮做准备 */
+  transition: background-color 0.2s ease; /* 添加平滑过渡动画 */
+}
+
+/* [核心修改] 优雅的悬浮高亮效果 */
+.systray .button:hover {
+  background-color: var(
+    --surface2
+  ) !important; /* 使用一个更亮的背景色作为高亮 */
+}
+
+/* 拖动图标时的样式 */
+.systray .button[dragging="true"] {
+  background: var(--surface1);
+  border-color: var(--surface1);
+}
+
+/* “显示隐藏图标” (^) 按钮的样式 */
+.systray .unpinned-visibility-btn {
+  border-radius: 6px;
+  height: 20px;
+  width: 20px;
+  color: var(--text);
+}
+
+/* 当隐藏图标可见时 (^) 按钮的样式 */
+.systray .unpinned-visibility-btn:checked {
+  background: var(--surface0);
+}
+
+/* (^) 按钮的悬浮高亮 (与普通图标保持一致) */
+.systray .unpinned-visibility-btn:hover {
+  background-color: var(--surface2) !important;
+}
+
+/* --- CPU / 内存 --- */
+.cpu-widget,
+.memory-widget {
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: 8px;
+  margin-right: 4px;
+  padding: 0 10px;
+}
+.cpu-widget .icon {
+  color: var(--green);
+  /* 为图标和数值之间添加右边距 */
+  margin-right: 10px;
+}
+.memory-widget .icon {
+  color: var(--yellow);
+  margin-right: 6px;
+}
+.cpu-widget .label,
+.memory-widget .label {
+  font-family: Arial, JetBrainsMono NF;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+/* --- 网络流量 --- */
+.traffic-widget .icon {
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  color: var(--teal);
+  border-radius: 8px;
+  padding: 0 12px;
+  margin-right: 4px;
+}
+.traffic-widget .label {
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: 8px;
+  padding: 0 10px;
+  margin-right: 4px;
+  font-family: Arial, JetBrainsMono NF;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* --- 音量 --- */
+.volume-widget {
+  background-color: var(--surface0);
+  border: 1px solid var(--surface1);
+  border-radius: 8px;
+  padding: 0 10px;
+}
+.volume-widget .icon {
+  color: var(--lavender);
+}
+.volume-widget .label {
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+/* 音量下拉菜单 */
+.audio-menu {
+  background-color: var(--mantle);
+}
+.audio-container .device {
+  background-color: var(--surface0);
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin: 2px 0;
+}
+.audio-container .device.selected {
+  background-color: var(--green);
+  color: var(--crust);
+}
+
+/* --- 时钟 --- */
+.clock-widget {
+  background-color: var(--surface0);
+  border: 1px solid var(--sky);
+  border-radius: 8px;
+  padding: 0 10px;
+  margin: 0 4px;
+}
+.clock-widget .label {
+  font-family: Arial; /* [恢复] */
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* --- 媒体播放器 --- */
+.media-widget {
+  background-color: var(--maroon);
+  border-radius: 8px;
+  padding: 0 12px;
+  margin: 0;
+}
+.media-widget .label {
+  color: var(--crust);
+  font-family: Arial; /* [恢复] */
+  font-size: 14px;
+  font-weight: bold;
+}
+.media-widget .btn {
+  font-family: "Segoe Fluent Icons";
+  color: var(--crust);
+  padding: 0 0 0 5px;
+}
+.media-widget .btn:hover {
+  color: var(--crust);
+}
+.media-widget .btn.disabled {
+  opacity: 0.7;
+}
+
+/* --- 通知 --- */
+.notification-widget {
+  border: 1px solid var(--mauve);
+  border-radius: 8px;
+  margin-left: 4px;
+}
+.notification-widget .widget-container {
+  background-color: var(--surface0);
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.notification-widget .icon {
+  font-size: 16px;
+  color: var(--peach);
+  /* [修复] 为图标和数值之间添加右边距 */
+  margin-right: 6px;
+}
+.notification-widget .label.new-notification {
+  color: white;
+  font-family: Arial; /* [恢复] */
+  font-size: 15px;
+  font-weight: bold;
+}

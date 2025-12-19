@@ -1,0 +1,12 @@
+/.source/
+*.log*
+sync.py
+lazy-lock.json
+
+# 其他通用的忽略项
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
