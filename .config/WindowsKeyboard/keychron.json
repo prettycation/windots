@@ -279,7 +279,7 @@
       { "col": 1, "row": 5, "val": 224 },
       { "col": 2, "row": 5, "val": 227 },
       { "col": 3, "row": 5, "val": 226 },
-      { "col": 4, "row": 5, "val": 21027 },
+      { "col": 4, "row": 5, "val": 226 },
       { "col": 5, "row": 5, "val": 0 },
       { "col": 6, "row": 5, "val": 44 },
       { "col": 7, "row": 5, "val": 0 },
@@ -459,11 +459,11 @@
     ]
   ],
   "version": "1.0.0",
-  "MD5": "3d4f43adef24d0929cea04cd7e74260a",
+  "MD5": "e5480a636b4c8146dd6dd8faf3d54fc7",
   "knob": [
     { "left": "KC_VOLD", "right": "KC_VOLU" },
     { "left": "RGB_VAD", "right": "RGB_VAI" },
-    { "left": "KC_VOLD", "right": "KC_VOLU" },
+    { "left": "KC_MS_WH_DOWN", "right": "KC_MS_WH_UP" },
     { "left": "RGB_VAD", "right": "RGB_VAI" }
   ]
 }
