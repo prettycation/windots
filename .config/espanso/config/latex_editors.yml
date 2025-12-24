@@ -1,0 +1,9 @@
+# 这个配置文件告诉 espanso，当检测到指定程序运行时，
+# 就额外加载 match/latex.yml 文件。
+
+# 使用 filter_exec，通过正则表达式匹配程序的可执行文件路径
+filter_exec: "Code|Obsidian"
+
+# 额外加载的匹配文件列表
+include:
+  - latex0.yml
