@@ -16,18 +16,18 @@ patch:
     rear_penalty: "-18"
     weak_collocation_penalty: "-24"
   "key_binder/bindings":
-    - {accept: Caps_Lock, send: Shift_L, when: composing}
-    - {accept: minus, send: Page_Up, when: paging}
-    - {accept: equal, send: Page_Down, when: has_menu}
-    - {accept: comma, send: Page_Up, when: paging}
-    - {accept: period, send: Page_Down, when: has_menu}
-    - {accept: bracketleft, send: Page_Up, when: paging}
-    - {accept: bracketright, send: Page_Down, when: has_menu}
-    - {accept: semicolon, send: 2, when: has_menu}
-    - {accept: apostrophe, send: 3, when: has_menu}
+    - { accept: Caps_Lock, send: Shift_L, when: composing }
+    - { accept: minus, send: Page_Up, when: paging }
+    - { accept: equal, send: Page_Down, when: has_menu }
+    - { accept: comma, send: Page_Up, when: paging }
+    - { accept: period, send: Page_Down, when: has_menu }
+    - { accept: bracketleft, send: Page_Up, when: paging }
+    - { accept: bracketright, send: Page_Down, when: has_menu }
+    - { accept: semicolon, send: 2, when: has_menu }
+    - { accept: apostrophe, send: 3, when: has_menu }
   "menu/page_size": 7
   schema_list:
-    - {schema: rime_ice}
-    - {schema: double_pinyin_flypy}
+    - { schema: rime_ice }
+    - { schema: moqi_wan_flypymo }
   "translator/contextual_suggestions": false
   "translator/max_homophones": 5

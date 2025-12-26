@@ -1,0 +1,6 @@
+matches:
+  - trigger: "g.ck"
+    replace: "git checkout "
+
+  - trigger: "g.cm"
+    replace: 'git commit -m "$|$"'
