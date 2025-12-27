@@ -63,7 +63,7 @@ translator:
   spelling_hints: 10      #将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
   comment_format: {comment}  #将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
 
-  enable_user_dict: false # 是否开启自动调频
+  enable_user_dict: true # 是否开启自动调频
   preedit_format:
 
 aux_patch:
@@ -86,7 +86,7 @@ __patch:
 key_binder:
   import_preset: default
   bindings:
-    #- { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
+    - { when: composing, accept: Tab, send: '[' } ## 取消注释后：tab引导辅助码
     - { when: composing, accept: Control+m, send: Return }
     - { when: composing, accept: Control+w, send: Control+BackSpace }
     - { when: has_menu, accept: semicolon, send: 2 }
@@ -99,7 +99,7 @@ key_binder:
     - { when: has_menu, accept: "Control+e", toggle: chinese_english }
 
 
-    - { match: "[a-z]{1,3}", accept: Tab,  send_sequence: "/1" }
+    # - { match: "[a-z]{1,3}", accept: Tab,  send_sequence: "/1" }
     - { match: "[a-z]{1,3}", accept: "/",  send_sequence: "/1" }
     - { match: "[a-z]{1,3}", accept: ".",  send_sequence: "/1" }
     # - { when: composing, match: "[a-z]{2}", accept: Tab, send: '|' }
