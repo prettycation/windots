@@ -1,0 +1,6 @@
+matches:
+  - trigger: "s.sc"
+    replace: "scoop search $|$"
+
+  - trigger: "s.is"
+    replace: "scoop install $|$"

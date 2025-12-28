@@ -297,5 +297,10 @@
       "controlStyles[15].styles[3]": "Background:=#00000000",
       "theme": "DockLike"
     }
+  },
+  "Better Taskbar Autohide": {
+    "settings": {
+      "delay": "1500"
+    }
   }
 }
