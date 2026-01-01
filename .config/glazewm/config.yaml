@@ -118,6 +118,7 @@ window_rules:
       - window_process: { equals: "clash-verge" }
       - window_process: { equals: "pot" }
       - window_process: { equals: "explorer" }
+      - window_process: { equals: "STranslate" }
 # ----------------------------------------------------------------------------------
 # [ BINDING MODES - 绑定模式 ]
 # ---------------------------------------------------------------------------------

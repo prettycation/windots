@@ -4,3 +4,9 @@ matches:
 
   - trigger: "s.is"
     replace: "scoop install $|$"
+
+  - trigger: "s.ui"
+    replace: "scoop uninstall $|$"
+
+  - trigger: "s.cl"
+    replace: "scoop cleanup *"
