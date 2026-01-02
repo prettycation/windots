@@ -10,25 +10,11 @@ Write-Host "Starting Windhawk..."
 Start-Process -FilePath (scoop which Windhawk) -ArgumentList "-tray-only"
 Start-Sleep -Seconds 1
 
-
-# 在后台以“无窗口”模式启动“任务栏守护”脚本 ---
-# Write-Host "Starting Taskbar Manager in a truly hidden window..."
-# $TaskbarScript = "$env:USERPROFILE\Documents\Scripts\taskbar-manager.ps1"
-# nircmd.exe exec hide powershell.exe -ExecutionPolicy Bypass -File `"$TaskbarScript`"
-
-# 启动“Nuisance Window Manager”脚本
-Write-Host "Starting Nuisance Window Manager..."
-$NuisanceWindowScript = "$env:USERPROFILE\Documents\Scripts\NuisanceWindow-manager.ps1"
-# 以隐藏窗口模式启动 NuisanceWindow-manager.ps1 (因为父脚本已是管理员，所以无需再提权)
-Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File `"$NuisanceWindowScript`""
-
-
 # --- 步骤 2: 启动窗口管理器 ---
 
 Write-Host "Starting GlazeWM..."
 Start-Process -FilePath (scoop which glazewm)
 Start-Sleep -Seconds 1
-
 
 # --- 步骤 3: 启动状态栏 ---
 
