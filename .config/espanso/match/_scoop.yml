@@ -10,3 +10,15 @@ matches:
 
   - trigger: "s.cl"
     replace: "scoop cleanup *"
+
+  - trigger: "s.ls"
+    replace: "scoop list *"
+
+  - trigger: "s.up"
+    replace: "scoop update *"
+
+  - trigger: "s.st"
+    replace: "scoop status --local"
+
+  - trigger: "s.hd"
+    replace: "scoop hold $|$"

@@ -19,8 +19,8 @@ Start-Sleep -Seconds 1
 # 启动“Nuisance Window Manager”脚本
 Write-Host "Starting Nuisance Window Manager..."
 $NuisanceWindowScript = "$env:USERPROFILE\Documents\Scripts\NuisanceWindow-manager.ps1"
-# 提权
-gsudo powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$NuisanceWindowScript`"
+# 以隐藏窗口模式启动 NuisanceWindow-manager.ps1 (因为父脚本已是管理员，所以无需再提权)
+Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File `"$NuisanceWindowScript`""
 
 
 # --- 步骤 2: 启动窗口管理器 ---

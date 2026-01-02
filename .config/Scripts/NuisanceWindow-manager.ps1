@@ -1,48 +1,88 @@
 ﻿# ==================================================================================
 # Nuisance Window Manager (流氓窗口管理器)
+#
+# 功能:
+# - 在桌面环境加载完毕后，自动关闭列表中指定的“流氓”进程。
+#
+# 特性: 
+# - [智能等待] 脚本启动后会首先等待 explorer.exe (桌面) 加载完成，确保目标应用有时间启动。
+# - [跨会话查找] 使用全局进程扫描的方式，确保在任务计划程序的系统级权限下，也能找到并操作
+#   用户桌面会话中运行的进程，解决了在任务计划中运行“看不见”用户进程的问题。
+# - [健壮性] 包含超时逻辑，防止在异常情况下无限等待。
+# - [日志清晰] 输出带有 [NWM] 前缀的日志，便于调试。
 # ==================================================================================
 
-# --- 要关闭的程序列表 ---
-# 通过“进程名”识别
+# --- 配置区域 ---
+
+# 在这里添加您想要在开机后自动关闭的程序的“进程名”(不含.exe)
 $nuisanceProcesses = @(
     @{
         ProcessName = "ControlCenterDaemon"
         Comment = "神舟风扇控制程序"
     }
-    # 示例，只需在这里添加：
+    # 示例: 如果您还想关闭另一个名为 "AnnoyingPopup.exe" 的程序
     # ,@{
-    #    ProcessName = "UpdateNotifier"
-    #    Comment = "某个软件的更新通知程序"
+    #    ProcessName = "AnnoyingPopup"
+    #    Comment = "一个烦人的弹窗程序"
     # }
 )
 
-Write-Host "--- Nuisance Window Manager starting ---" -ForegroundColor Cyan
+# 等待 explorer.exe 的最长超时时间（秒）
+$waitTimeoutSeconds = 120 
 
-# 等待，以确保这些程序已经启动。
-$initialWaitSeconds = 1
-Write-Host "Waiting for $initialWaitSeconds seconds for desktop to settle..."
-Start-Sleep -Seconds $initialWaitSeconds
+# --- 核心逻辑 ---
 
-# 遍历不需要的进程列表
+Write-Host "--- [NWM] Nuisance Window Manager starting ---" -ForegroundColor Cyan
+
+# 1. 智能等待桌面环境加载 (等待 explorer.exe 进程出现)
+#    这是为了确保脚本执行时，用户桌面已经初始化，目标流氓软件也已经启动。
+Write-Host "[NWM] Waiting for the desktop environment (explorer.exe) to be ready..."
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+while ($stopwatch.Elapsed.TotalSeconds -lt $waitTimeoutSeconds) {
+    # -ErrorAction SilentlyContinue 确保在找不到进程时不会报错
+    if (Get-Process -Name "explorer" -ErrorAction SilentlyContinue) {
+        Write-Host "[NWM] Desktop is ready! (explorer.exe found)" -ForegroundColor Green
+        # 桌面进程已找到，额外再等待一小段时间（3秒），让桌面上的其他应用有机会完成加载。
+        Start-Sleep -Seconds 3 
+        break # 退出等待循环
+    }
+    # 每隔半秒检查一次，避免CPU占用过高
+    Start-Sleep -Milliseconds 500
+}
+
+if ($stopwatch.Elapsed.TotalSeconds -ge $waitTimeoutSeconds) {
+    Write-Warning "[NWM] Timed out waiting for explorer.exe after $waitTimeoutSeconds seconds. The script will continue, but might fail to find target processes."
+}
+$stopwatch.Stop()
+
+
+# 2. 遍历并关闭目标进程
 foreach ($item in $nuisanceProcesses) {
     $processName = $item.ProcessName
-    Write-Host "Searching for process: '$processName'"
+    Write-Host "[NWM] Searching for process across all users: '$($item.Comment)' (Process: $processName)"
 
     try {
-        # 根据进程名查找。
-        $processesToStop = Get-Process -Name $processName -ErrorAction Stop
+        # 获取系统上的【所有】进程，然后通过 Where-Object 进行手动筛选。
+        # 这是在系统服务或任务计划中查找其他会话用户进程的最可靠方法。
+        $processesToStop = Get-Process | Where-Object { $_.ProcessName -eq $processName }
         
         if ($null -ne $processesToStop) {
-
-            Write-Host "Found $($processesToStop.Count) instance(s) of '$processName'. Force stopping..." -ForegroundColor Green
+            # 使用 Measure-Object 来准确计数，即使只有一个进程对象
+            $processCount = ($processesToStop | Measure-Object).Count
+            Write-Host "[NWM] Found $processCount instance(s) of '$processName'. Force stopping..." -ForegroundColor Green
+            
+            # 直接通过管道将找到的进程对象传递给 Stop-Process 来终止
             $processesToStop | Stop-Process -Force
-            Write-Host "Process '$processName' stopped successfully."
+            
+            Write-Host "[NWM] Process '$processName' stopped successfully."
+        } else {
+            # 如果 $processesToStop 为空，说明没有找到匹配的进程
+             Write-Host "[NWM] Process '$processName' not found on the system." -ForegroundColor Yellow
         }
-        # 如果 Get-Process 找不到进程，它会直接抛出一个错误，并被下面的 catch 块捕获。
     } catch {
-        # 捕获 Get-Process 找不到进程时抛出的错误
-        Write-Host "Process '$processName' not found. (Already closed or not running)" -ForegroundColor Yellow
+        # 捕获 Stop-Process 可能出现的其他错误，例如权限不足或进程已在操作期间退出
+        Write-Warning "[NWM] An error occurred while trying to stop '$processName': $($_.Exception.Message)"
     }
 }
 
-Write-Host "--- Nuisance Window Manager finished ---" -ForegroundColor Cyan
+Write-Host "--- [NWM] Nuisance Window Manager finished ---" -ForegroundColor Cyan
