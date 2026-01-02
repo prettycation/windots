@@ -119,6 +119,7 @@ window_rules:
       - window_process: { equals: "pot" }
       - window_process: { equals: "explorer" }
       - window_process: { equals: "STranslate" }
+      - window_process: { equals: "EcoPaste" }
 # ----------------------------------------------------------------------------------
 # [ BINDING MODES - 绑定模式 ]
 # ---------------------------------------------------------------------------------
