@@ -61,35 +61,35 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 [opener]
 # "edit" 动作：主要用于代码/文本编辑器。
 edit = [
-	{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = '''${EDITOR:-vi} {*s}''', desc = "$EDITOR", block = true, for = "unix" },
 	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
 	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
 ]
 # "open" 动作：使用系统的默认程序打开文件。
 open = [
-	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
-	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
-	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
-	{ run = 'termux-open "$1"',             desc = "Open", for = "android" },
+	{ run = 'xdg-open {s}',                desc = "Open", for = "linux" },
+	{ run = 'open {*s}',                   desc = "Open", for = "macos" },
+	{ run = 'start "" "%s"', orphan = true, desc = "Open", for = "windows" },
+	{ run = 'termux-open {s}',             desc = "Open", for = "android" },
 ]
 # "reveal" 动作：在系统的图形化文件管理器中显示文件。
 reveal = [
-	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
-	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
-	{ run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
-	{ run = 'termux-open "$(dirname "$1")"',        desc = "Reveal", for = "android" },
-	{ run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+	{ run = 'xdg-open "{d}"',                        desc = "Reveal", for = "linux" },
+	{ run = 'open -R {s}',                           desc = "Reveal", for = "macos" },
+	{ run = 'explorer /select,"%s"', orphan = true, desc = "Reveal", for = "windows" },
+	{ run = 'termux-open "{d}"',                     desc = "Reveal", for = "android" },
+	{ run = '''clear; exiftool {s}; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 # "extract" 动作：用于解压压缩包。
 extract = [
-	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+	{ run = 'ya pub extract --list {*s}', desc = "Extract here", for = "unix" },
+	{ run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 # "play" 动作：用于播放媒体文件。
 play = [
-	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv --force-window {*s}', orphan = true, for = "unix" },
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+	{ run = '''mediainfo {s}; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 # 自定义的 "edit_npp" 动作，用于调用 Notepad++。
 edit_npp = [
@@ -106,11 +106,11 @@ edit_nvim = [
 [open]
 rules = [
 	# 最高优先级：.txt 和 .md 文件默认使用 'edit_nvim' (Neovim) 动作。
-    # { name = "*.{txt,md}", use = [ "edit_npp", "reveal" ], desc = "Open with Notepad++" },
-	{ name = "*.{txt,md}", use = [ "edit_nvim", "edit", "reveal" ], desc = "Open with Neovim" },
+    # { url = "*.{txt,md}", use = [ "edit_npp", "reveal" ], desc = "Open with Notepad++" },
+	{ url = "*.{txt,md}", use = [ "edit_nvim", "edit", "reveal" ], desc = "Open with Neovim" },
 
     # 文件夹：提供 'edit'(VSCode), 'edit_nvim'(Neovim), 'open'(系统默认) 和 'reveal' 选项。
-    { name = "*/", use = [ "edit","edit_nvim", "open", "reveal" ] },
+    { url = "*/", use = [ "edit","edit_nvim", "open", "reveal" ] },
     # 其他所有文本文件：提供 'edit_nvim' 和 'edit' 选项。
     { mime = "text/*", use = [ "edit_nvim","edit", "reveal" ] },
     # 图片：使用 'open' (系统默认) 和 'reveal'。
@@ -125,7 +125,7 @@ rules = [
     # 空文件：提供 'edit_nvim' 和 'edit' 选项。
     { mime = "inode/empty", use = [ "edit_nvim","edit","reveal" ] },
     # 最后的备用规则：对于所有其他文件，使用 'open' (系统默认) 和 'reveal'。
-    { name = "*", use = [ "open", "reveal" ] },
+    { url = "*", use = [ "open", "reveal" ] },
 ]
 
 # --- [tasks] ---
@@ -150,19 +150,20 @@ suppress_preload = false
 
 # "fetchers" 用于在 yazi 扫描文件时，提前获取额外信息。
 fetchers = [
+	{ id = "mime", url = "*/", run = "mime.dir", prio = "high" },
 	# "mime" 插件会调用外部程序 (如 file.exe) 来确定每个文件的 MIME 类型。
-	{ id = "mime", name = "*", run = "mime", prio = "high" },
+	{ id = "mime", url = "*", run = "mime.local", prio = "high" },
 ]
 # "spotters" 在旧版 yazi 中用于生成文件元信息，现已不常用。
 spotters = [
-	{ name = "*/", run = "folder" },
+	{ url = "*/", run = "folder" },
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
 	{ mime = "image/svg+xml", run = "svg" },
 	{ mime = "image/*", run = "image" },
 	{ mime = "video/*", run = "video" },
-	{ name = "*", run = "file" },
+	{ url = "*", run = "file" },
 ]
 # "preloaders" 在文件进入视野时提前加载预览内容，以提高预览的显示速度。
 preloaders = [
@@ -182,12 +183,12 @@ preloaders = [
 
     # 规则4: 作为备用方案，通过文件名后缀来匹配。
     # 这在系统未能正确识别MIME类型时非常有用。
-    { name = "*.docx", run = "office" },
-    { name = "*.xlsx", run = "office" },
-    { name = "*.pptx", run = "office" },
-    { name = "*.doc",  run = "office" }, # 增加对旧版 .doc 的支持
-    { name = "*.xls",  run = "office" }, # 增加对旧版 .xls 的支持
-    { name = "*.ppt",  run = "office" }, # 增加对旧版 .ppt 的支持
+    { url = "*.docx", run = "office" },
+    { url = "*.xlsx", run = "office" },
+    { url = "*.pptx", run = "office" },
+    { url = "*.doc",  run = "office" }, # 增加对旧版 .doc 的支持
+    { url = "*.xls",  run = "office" }, # 增加对旧版 .xls 的支持
+    { url = "*.ppt",  run = "office" }, # 增加对旧版 .ppt 的支持
     
     # --- Office 文档预览规则结束 ---
 
@@ -214,16 +215,16 @@ previewers = [
     { mime = "application/msword", run = "office" },
 
     # 规则4: 通过文件名后缀匹配，作为备用
-    { name = "*.docx", run = "office" },
-    { name = "*.xlsx", run = "office" },
-    { name = "*.pptx", run = "office" },
-    { name = "*.doc",  run = "office" },
-    { name = "*.xls",  run = "office" },
-    { name = "*.ppt",  run = "office" },
+    { url = "*.docx", run = "office" },
+    { url = "*.xlsx", run = "office" },
+    { url = "*.pptx", run = "office" },
+    { url = "*.doc",  run = "office" },
+    { url = "*.xls",  run = "office" },
+    { url = "*.ppt",  run = "office" },
 
     # --- Office 文档预览规则结束 ---
 
-	{ name = "*/", run = "folder" }, # 文件夹使用 'folder' 预览器
+	{ url = "*/", run = "folder" }, # 文件夹使用 'folder' 预览器
 	{ mime = "text/*", run = "code" }, # 文本文件使用 'code' 预览器 (它会调用 bat)
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	{ mime = "application/{json,ndjson}", run = "json" }, # JSON 文件使用 'json' 预览器 (它也会调用 bat)
@@ -233,14 +234,14 @@ previewers = [
 	{ mime = "video/*", run = "video" }, # 视频文件使用 'video' 预览器
     { mime = "application/pdf", run = "pdf" }, # PDF 文件使用 'pdf' 预览器 (它会调用 pdftoppm)
 	{ mime = "application/{zip,rar...}", run = "archive" }, # 压缩包使用 'archive' 预览器
-	{ name = "*.{AppImage,appimage}", run = "archive" },
+	{ url = "*.{AppImage,appimage}", run = "archive" },
 	{ mime = "application/{iso9660-image...}", run = "archive" },
 	{ mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
-	{ name = "*.{img,fat,ext...}", run = "archive" },
+	{ url = "*.{img,fat,ext...}", run = "archive" },
 	{ mime = "font/*", run = "font" },
 	{ mime = "application/ms-opentype", run = "font" },
 	{ mime = "inode/empty", run = "empty" },
-	{ name = "*", run = "file" }, # 备用规则：对所有其他文件，显示基本文件信息
+	{ url = "*", run = "file" }, # 备用规则：对所有其他文件，显示基本文件信息
 ]
 
 # --- [input], [confirm], [pick], [which] ---
@@ -288,12 +289,12 @@ delete_origin	= "center"
 delete_offset	= [ 0, 0, 70, 20 ]
 # "overwrite" (覆盖文件) 确认对话框的设置。
 overwrite_title   = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body = "Will overwrite the following file:"
 overwrite_origin  = "center"
 overwrite_offset  = [ 0, 0, 50, 15 ]
 # "quit" (退出时有任务在运行) 确认对话框的设置。
 quit_title   = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
+quit_body = "The following tasks are still running, are you sure you want to quit?"
 quit_origin  = "center"
 quit_offset  = [ 0, 0, 50, 15 ]
 

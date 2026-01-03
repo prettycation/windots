@@ -9,7 +9,7 @@ keymap = [
 	# plugins
 	{ on = "F", run = "plugin smart-filter", desc = "智能过滤器" },
     { on = "+", run = "plugin zoom 1",       desc = "放大悬停文件" },
-    { on = "-", run = "plugin zoom -1",      desc = "缩小悬停文件" },
+    { on = "_", run = "plugin zoom -1",      desc = "缩小悬停文件" },
 
     { on = ["g", "d"], run = "cd D:",			 desc = "前往 D: 盘" },
     { on = ["g", "c"], run = "cd C:",			 desc = "前往 C: 盘" },

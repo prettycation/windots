@@ -12,7 +12,7 @@ matches:
     replace: "scoop cleanup *"
 
   - trigger: "s.ls"
-    replace: "scoop list *"
+    replace: "scoop list"
 
   - trigger: "s.up"
     replace: "scoop update *"

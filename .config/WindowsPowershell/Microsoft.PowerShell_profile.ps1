@@ -228,6 +228,15 @@ function Close-WifiConnection {
     }
 }
 
+function hl.history {
+    Get-History | Select-Object `
+        @{n='time';e={$_.StartExecutionTime}}, `
+        @{n='level';e={'INFO'}}, `
+        @{n='message';e={$_.CommandLine}}, `
+        @{n='duration';e={$_.Duration.TotalSeconds.ToString("0.00") + 's'}} `
+    | ForEach-Object { $_ | ConvertTo-Json -Compress } | hl
+}
+
 Remove-Item alias:ls -Force -ErrorAction SilentlyContinue
 
 # 基础 ls 命令，只设置图标。
@@ -263,6 +272,12 @@ Set-Alias -Name dw -Value Close-WifiConnection -Force
 # 3. 配置模块 (补全、历史记录等)
 # ===================================================================
 
+# hl (human log) 自动补全配置
+# 检查 hl 命令是否存在，避免未安装时报错
+if (Get-Command hl -ErrorAction SilentlyContinue) {
+    # 动态生成补全脚本并执行
+    hl --shell-completions powershell | Out-String | Invoke-Expression
+}
 
 # ——— 配置 PSReadLine (补全、历史记录等)
 Set-PSReadLineOption -EditMode Windows

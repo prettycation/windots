@@ -9,10 +9,6 @@
 # 当前工作目录
 cwd = { fg = "#94e2d5" }
 
-# 悬停项
-hovered         = { reversed = true }
-preview_hovered = { underline = true }
-
 # 搜索
 find_keyword  = { fg = "#f9e2af", bold = true, italic = true, underline = true }
 find_position = { fg = "#f5c2e7", bg = "reset", bold = true, italic = true }
@@ -31,6 +27,15 @@ count_selected = { fg = "#11111b", bg = "#f9e2af" }
 # 边框
 border_symbol = "│"
 border_style  = { fg = "#6c7086" }
+
+# : }}}
+
+
+# : Indicator (新增部分) {{{
+
+[indicator]
+current = { reversed = true }
+preview = { underline = true }
 
 # : }}}
 
@@ -181,9 +186,9 @@ rules = [
   # 链接文件
   { mime = "vfs/{absent,stale}", fg = "#6c7086" }, # Overlay0 (灰色)
   # 默认文件
-  { name = "*", fg = "#cdd6f4" }, # Text
+  { url = "*", fg = "#cdd6f4" }, # Text
   # 目录
-  { name = "*/", fg = "#89b4fa" }, # Blue
+  { url = "*/", fg = "#89b4fa" }, # Blue
 ]
 
 # : }}}
