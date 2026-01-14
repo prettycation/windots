@@ -27,7 +27,6 @@ patch:
     - { accept: apostrophe, send: 3, when: has_menu }
   "menu/page_size": 7
   schema_list:
-    - { schema: rime_ice }
-    - { schema: moqi_wan_flypymo }
+    - { schema: wanxiang_pro }
   "translator/contextual_suggestions": false
   "translator/max_homophones": 5
