@@ -1,6 +1,6 @@
-# solution
-
 matches:
+  # solution
+
   - trigger: ":sl1"
     replace: "请为问题命名并按规范解答，使用定理或结论要按照双链格式规范引用："
 
