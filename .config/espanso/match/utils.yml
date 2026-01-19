@@ -126,10 +126,6 @@ matches:
 - trigger: :kr
   replace: "Kind Regards,\nAlicia\n"
   
-# 输出 git commit 命令，并将光标置于消息区
-- trigger: :commit
-  replace: git commit -m "$|$"
-  
 # 从 whatthecommit.com 获取一条有趣的 commit 消息 (需要 curl)
 - trigger: :wtc
   replace: "{{output}}"

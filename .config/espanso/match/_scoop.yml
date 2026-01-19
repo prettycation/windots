@@ -15,10 +15,13 @@ matches:
     replace: "scoop list"
 
   - trigger: "s.up"
-    replace: "scoop update *"
+    replace: "scoop update"
 
   - trigger: "s.st"
-    replace: "scoop status --local"
+    replace: "scoop status"
 
   - trigger: "s.hd"
     replace: "scoop hold $|$"
+
+  - trigger: "s.uh"
+    replace: "scoop unhold $|$"

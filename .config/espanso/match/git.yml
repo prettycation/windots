@@ -4,3 +4,18 @@ matches:
 
   - trigger: "g.cm"
     replace: 'git commit -m "$|$"'
+
+  - trigger: "g.cl"
+    replace: "git clone "
+
+  - trigger: "g.sw"
+    replace: "git switch "
+
+  - trigger: "g.rs"
+    replace: "git reset --hard upstream/main"
+
+  - trigger: "g.ps"
+    replace: "git push --force-with-lease $|$"
+
+  - trigger: "g.rm"
+    replace: "git remote add upstream "
