@@ -2,6 +2,8 @@
 *.log*
 sync.py
 lazy-lock.json
+password.yml
+account.yml
 
 # 其他通用的忽略项
 __pycache__/
