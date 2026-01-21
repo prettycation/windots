@@ -120,6 +120,7 @@ window_rules:
       - window_process: { equals: "explorer" }
       - window_process: { equals: "STranslate" }
       - window_process: { equals: "EcoPaste" }
+      - window_process: { equals: "mpv" }
 # ----------------------------------------------------------------------------------
 # [ BINDING MODES - 绑定模式 ]
 # ---------------------------------------------------------------------------------
