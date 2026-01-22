@@ -19,17 +19,31 @@ patch:
 
   preset_color_schemes/catppuccin_mocha:
     name: "Catppuccin Mocha"
+    # 候选框整体背景色：整个候选窗口的基础底色。
     back_color: 0x1B1111
+    # 边框颜色：候选框最外层边框的颜色（需要 style/layout/border_width > 0 时才可见）。
     border_color: 0x251818
+    # 预编辑区文字颜色：正在输入的编码（如 "nihao"）的文字颜色。
     text_color: 0xDEC2BA
+    # 候选项序号颜色：普通（未选中）候选项的数字标签（如 2, 3, 4）的颜色。
     label_color: 0xC8ADA6
+    # 候选项文字颜色：普通（未选中）候选项的文字（如“你好”）的颜色。
     candidate_text_color: 0xF4D6CD
+    # 【高亮候选项背景色：当前选中（高亮）的那个候选项的背景色块。
     hilited_back_color: 0xF7A6CB
+    # 高亮候选项文字颜色：当前选中候选项的文字颜色。
     hilited_candidate_text_color: 0x2E1E1E
-    hilited_candidate_label_color: 0x443231
+    # 高亮状态下的“预编辑区”文字颜色
     hilited_text_color: 0x705B58
-    hilited_comment_text_color: 0x443231
-    comment_text_color: 0x705B58
+    # 高亮候选项序号颜色：当前选中候选项的数字标签（通常是 1）的颜色。
+    hilited_candidate_label_color: 0x443231
+    # 高亮候选项注释颜色：当前选中候选项的注释文字（如辅助码、拼音等）的颜色。
+    hilited_comment_text_color: 0xef3988
+    # 注释文字颜色：普通（未选中）候选项的注释文字的颜色。
+    comment_text_color: 0xc6c6f0
+    # 阴影颜色：整个候选框的阴影颜色（需要 style/layout/shadow_radius > 0 时才可见）。
+    # 这里的 'aa' 是透明度值 (AABBGGRR 格式)，让阴影呈现半透明效果。
+    shadow_color: 0xaa1b1111
 
   preset_color_schemes/catppuccin_frappe:
     name: "Catppuccin Frappe"
@@ -62,7 +76,7 @@ patch:
   # ---- 2. 其他自定义设置 ----
   # ---- 程序特定设置 ----
   "app_options/windowsterminal.exe":
-    ascii_mode: true # 修正了拼写错误
+    ascii_mode: true
     vim_mode: true
 
   # ---- 选中配色方案 ----
@@ -71,15 +85,15 @@ patch:
   "style/color_scheme_dark": catppuccin_mocha
 
   # ---- 字体设置 ----
-  "style/font_face": "Segoe UI Emoji:23:23, Segoe UI Emoji:2a:2a, Segoe UI Emoji:30:39, Segoe UI Emoji:fe0f:fe0f, Segoe UI Emoji:20e3:20e3, Segoe UI, Microsoft YaHei, DengXian, Segoe UI Emoji, Noto Color Emoji, Segoe UI Symbol"
-  "style/label_font_face": "Microsoft YaHei"
-  "style/comment_font_face": "Microsoft YaHei"
+  "style/font_face": "Segoe UI Emoji:23:23, Segoe UI Emoji:2a:2a, Segoe UI Emoji:30:39, Segoe UI Emoji:fe0f:fe0f, Segoe UI Emoji:20e3:20e3, LXGW WenKai Mono GB, Segoe UI, Microsoft YaHei, DengXian, Segoe UI Emoji, Noto Color Emoji, Segoe UI Symbol"
+  "style/label_font_face": "LXGW WenKai Mono GB"
+  "style/comment_font_face": "LXGW WenKai Mono GB"
   "style/font_point": 14
   "style/label_font_point": 14
-  "style/comment_font_point": 13
+  "style/comment_font_point": 10
 
   # ---- 布局与显示 ----
-  "style/horizontal": true
+  "style/horizontal": false # 竖排
   "style/inline_preedit": true
 
   # ---- 边距、间距和圆角 ----
@@ -91,3 +105,8 @@ patch:
   "style/layout/hilite_padding": 8
   "style/layout/corner_radius": 8
   "style/layout/round_corner": 8
+
+  # --- 阴影 ---
+  "style/layout/shadow_radius": 5 # 阴影半径，值越大阴影越模糊、范围越广
+  "style/layout/shadow_offset_x": 4 # 阴影在X轴的偏移
+  "style/layout/shadow_offset_y": 4 # 阴影在Y轴的偏移
