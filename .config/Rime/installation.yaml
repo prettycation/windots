@@ -1,0 +1,9 @@
+distribution_code_name: Weasel
+distribution_name: "小狼毫"
+distribution_version: 0.17.4
+install_time: "Wed Nov 12 18:21:08 2025"
+# 同步目录名
+installation_id: "windows"
+# 同步目录
+sync_dir: 'F:\project\windots\.source\Rime\sync'
+rime_version: 1.13.1

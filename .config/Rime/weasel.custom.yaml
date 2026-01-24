@@ -19,28 +19,48 @@ patch:
 
   preset_color_schemes/catppuccin_mocha:
     name: "Catppuccin Mocha"
-    # 候选框整体背景色：整个候选窗口的基础底色。
+    # ---- 整体设定 ----
+    # 背景颜色
     back_color: 0x1B1111
-    # 边框颜色：候选框最外层边框的颜色（需要 style/layout/border_width > 0 时才可见）。
+    # 边框颜色 (无边框效果需边框和背景为同一颜色)
     border_color: 0x251818
-    # 预编辑区文字颜色：正在输入的编码（如 "nihao"）的文字颜色。
-    text_color: 0xDEC2BA
-    # 候选项序号颜色：普通（未选中）候选项的数字标签（如 2, 3, 4）的颜色。
-    label_color: 0xC8ADA6
-    # 候选项文字颜色：普通（未选中）候选项的文字（如“你好”）的颜色。
-    candidate_text_color: 0xF4D6CD
-    # 【高亮候选项背景色：当前选中（高亮）的那个候选项的背景色块。
-    hilited_back_color: 0xF7A6CB
-    # 高亮候选项文字颜色：当前选中候选项的文字颜色。
-    hilited_candidate_text_color: 0x2E1E1E
-    # 高亮状态下的“预编辑区”文字颜色
-    hilited_text_color: 0x705B58
-    # 高亮候选项序号颜色：当前选中候选项的数字标签（通常是 1）的颜色。
-    hilited_candidate_label_color: 0x443231
-    # 高亮候选项注释颜色：当前选中候选项的注释文字（如辅助码、拼音等）的颜色。
-    hilited_comment_text_color: 0xef3988
-    # 注释文字颜色：普通（未选中）候选项的注释文字的颜色。
+    # 文字颜色
+    text_color: 0xe8e0dc
+    # 阴影颜色
+    # shadow_color:
+
+    # 标签颜色
+    label_color: 0xc8ada6
+    # 提示颜色
     comment_text_color: 0xc6c6f0
+
+    # ---- 内选区域 ----
+    # 编码颜色
+    hilited_text_color: 0xf4ad8a
+    # 背景颜色
+    # hilited_back_color:
+    # 阴影颜色
+    # hilited_shadow_color:
+
+    # ---- 激活候选项 ----
+    # 文字颜色
+    hilited_candidate_text_color: 0x2e1e1e
+    # 提示颜色
+    hilited_comment_text_color: 0xef3988
+    # 标签颜色
+    hilited_label_color: 0x443231
+    # 背景颜色
+    hilited_candidate_back_color: 0xf7a6cb
+    # 阴影颜色
+    # hilited_candidate_shadow_color:
+
+    # ---- 其他候选项 ----
+    # 文字颜色
+    candidate_text_color: 0xf4d6cd
+    # 阴影颜色
+    # candidate_shadow_color:
+
+    # ---- 布局 ----
     # 阴影颜色：整个候选框的阴影颜色（需要 style/layout/shadow_radius > 0 时才可见）。
     # 这里的 'aa' 是透明度值 (AABBGGRR 格式)，让阴影呈现半透明效果。
     shadow_color: 0xaa1b1111
@@ -79,6 +99,7 @@ patch:
     ascii_mode: true
     vim_mode: true
 
+  # style/layout 是样式参数层，使用扁平路径确保配置读取的确定性和性能,不支持嵌套结构
   # ---- 选中配色方案 ----
   # 无论系统是亮色还是暗色模式，都强制使用 catppuccin_mocha
   "style/color_scheme": catppuccin_mocha
@@ -94,7 +115,7 @@ patch:
 
   # ---- 布局与显示 ----
   "style/horizontal": false # 竖排
-  "style/inline_preedit": true
+  "style/inline_preedit": false
 
   # ---- 边距、间距和圆角 ----
   "style/layout/border_width": 2

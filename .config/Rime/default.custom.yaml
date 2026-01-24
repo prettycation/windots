@@ -1,31 +1,15 @@
-customization:
-  distribution_code_name: Weasel
-  distribution_version: 0.17.4
-  generator: "Rime::SwitcherSettings"
-  modified_time: "Fri Dec 12 23:27:47 2025"
-  rime_version: 1.13.1
 patch:
   "ascii_composer/switch_key/Shift_L": commit_code
   "ascii_composer/switch_key/Shift_R": commit_code
   grammar:
     collocation_max_length: 8
     collocation_min_length: 3
-    collocation_penalty: "-10"
+    collocation_penalty: -10
     language: "wanxiang-lts-zh-hans"
-    non_collocation_penalty: "-17"
-    rear_penalty: "-18"
-    weak_collocation_penalty: "-24"
-  "key_binder/bindings":
-    - { accept: Caps_Lock, send: Shift_L, when: composing }
-    - { accept: minus, send: Page_Up, when: paging }
-    - { accept: equal, send: Page_Down, when: has_menu }
-    - { accept: comma, send: Page_Up, when: paging }
-    - { accept: period, send: Page_Down, when: has_menu }
-    - { accept: bracketleft, send: Page_Up, when: paging }
-    - { accept: bracketright, send: Page_Down, when: has_menu }
-    - { accept: semicolon, send: 2, when: has_menu }
-    - { accept: apostrophe, send: 3, when: has_menu }
-  "menu/page_size": 7
+    non_collocation_penalty: -17
+    rear_penalty: -18
+    weak_collocation_penalty: -24
+  "menu/page_size": 6
   schema_list:
     - { schema: wanxiang_pro }
   "translator/contextual_suggestions": false
