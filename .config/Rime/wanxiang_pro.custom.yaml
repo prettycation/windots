@@ -110,8 +110,8 @@ patch:
   # 挂载处理器 (处理快捷键)
   "engine/processors/@next": lua_processor@*input_text*processor
 
-  # 挂载过滤器 (生成翻译候选词)
-  "engine/filters/@next": lua_filter@*input_text*filter
+  # 在去重前挂载过滤器 (生成翻译候选词)
+  "engine/filters/@before 7": lua_filter@*input_text*filter
 
   # 快符功能：
   # a/、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
