@@ -1,0 +1,15 @@
+{
+  "last_update": "2026-01-25T20:35:22.9123491+08:00",
+  "aria2-max-connection-per-server": "16",
+  "aria2-split": "16",
+  "aria2-min-split-size": "1M",
+  "aria2-retry-wait": "3",
+  "abgox-abyss-bucket-name": "abyss",
+  "scoop_repo": "https://github.com/ScoopInstaller/Scoop",
+  "scoop_branch": "master",
+  "root_path": "F:\\software\\Scoop",
+  "aria2-enabled": true,
+  "abgox-abyss-app-shortcuts-action": "1",
+  "ignore_running_processes": true,
+  "abgox-abyss-app-uninstall-action": "1"
+}

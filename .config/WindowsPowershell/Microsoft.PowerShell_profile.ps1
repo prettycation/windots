@@ -327,10 +327,15 @@ $ENV:FZF_DEFAULT_OPTS=@"
 --color=border:#6C7086,label:#CDD6F4
 "@
 
-# 将scoop-search集成到 PowerShell
+# 8. 将 scoop-search 集成到 PowerShell
 # Invoke-Expression (&scoop-search --hook)
 . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
 
-# 5. Zoxide (smart cd) Initialization (最后一步)
+# 9. Zoxide (smart cd) Initialization (最后一步)
 # 将 zoxide 的钩子注入到修改过的提示符中。
 Invoke-Expression (& { (zoxide init powershell) -join "`n" })
+
+# 10. 初始化 md
+. "$(scoop prefix Cishoon.md)\md.ps1"
+
+
