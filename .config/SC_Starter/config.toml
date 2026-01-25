@@ -1,0 +1,111 @@
+# 设置文件使用说明 / Configuration File Instructions:
+#
+# ①程序启动时会自动处理配置文件
+# ①The program will automatically process the configuration file when starting
+#   - 如果文件不存在，会创建默认配置
+#   - If the file does not exist, default settings will be created
+#   - 如果某项配置缺失，会自动补充默认值
+#   - If any setting is missing, default values will be added
+#
+# ②配置更改后需要重启程序才能生效
+# ②Program restart is required after configuration changes
+#   - 使用快捷键 Win+Ctrl+Shift+Esc 退出程序
+#   - Use Win+Ctrl+Shift+Esc to exit the program
+#   - 重新启动程序加载新配置
+#   - Restart the program to load new settings
+
+[hotkey]
+# 快捷键配置说明 / Hotkey Configuration:
+# 1. 格式：控制键+控制键+...@实际键
+# 1. Format: Modifier+Modifier+...@Key
+# 2. 至少需要两个控制键，避免冲突，Fn系列可以不需要控制键
+#    注：Fn键配置类似 `@F1`
+# 2. At least two modifiers required to avoid conflicts, Fn series keys may not require modifiers
+#    Note: Fn key configuration is like `@F1`
+# 3. 支持的控制键 / Supported modifiers:
+#    - WIN/WINDOWS/SUPER
+#    - CTRL/CONTROL
+#    - ALT
+#    - SHIFT
+# 4. 支持的实际键 / Supported keys:
+#    - A-Z：字母键 / Letters
+#    - 0-9：数字键 / Numbers
+#    - F1-F24：Fn键 / Fn keys
+#    - VK_系列：特殊键 / Special keys
+
+# 控制截屏 / Screen capture
+screen_capture = "Ctrl+Win+Alt@P"
+
+# 控制截长屏 / Screen capture long
+screen_capture_long = "Ctrl+Win+Alt@L"
+
+# 将剪贴板中的图像钉到屏幕 / Pin clipboard image to screen
+pin_to_screen = "Ctrl+Win+Alt@T"
+
+# 退出软件 / Exit application
+exit = "Win+Ctrl+Shift@VK_ESCAPE"
+
+# 打开配置文件 / Open configuration file
+open_conf = "Ctrl+Win+Alt@O"
+
+# 调用其它软件 / Launch other application
+# 该软件将自动置顶 / The application will be set to topmost
+# 软件路径在下方的 path 配置类别中指定
+launch_app = "Ctrl+Win+Alt@A"
+
+[path]
+# 设置图片的自动保存位置，可选以下几种：
+# Configure automatic save location for images, options:
+# &         -> 截图时手动选定（默认）/ Manual selection when capturing (default)
+# @         -> 桌面 / Desktop
+# *         -> 图片文件夹 / Pictures folder
+# D:/test   -> 其他指定文件夹（支持目录中含有中文及空格，路径必须存在）
+#              Other specified folder (supports Chinese and spaces in path, must exist)
+# ⚠️警告/Warning⚠️
+# 路径必须使用斜杠『/』或双反斜杠『\\』
+# Path must use slashes "/" or double backslashes "\\"
+dir = "&"
+
+# 需要启动的程序路径，要求同上
+# Process path you want to launch
+launch_app_path = "C:/Windows/System32/notepad.exe"
+# 启动参数，可以置空
+# 使用 Tab（打不出来可以复制这个<	>）间隔每个参数
+# Process Args, blank is allowed
+# Use Tab to separate each argument (it may not be typed, you can copy this <	>)
+launch_app_args = ""
+
+[sundry]
+# 设置是否开机自启
+# Configure whether to start automatically at boot
+# true->启用, false->禁用
+startup = false
+
+# 图像压缩与缩放比例
+# Image compression and scaling ratio settings
+# 压缩等级：0-10（清晰->模糊），-1代表默认
+# 缩放：1%-100%，（模糊->清晰）
+# Compression level: 0-10 (clear->blur), -1 for default
+# Scale: 1%-100% (blur->clear)
+comp_level = -1
+scale_ratio = 100
+
+[gui]
+# GUI配置，默认全部启用
+# rect：方框
+# ellipse：椭圆
+# arrow：箭头
+# number：标号
+# line：直线
+# text：文本
+# mosaic：马赛克
+# eraser：橡皮擦
+# undo/redo：撤销/重做
+# pin：钉图
+# clipboard：保存到剪贴板
+# save：保存
+# close：关闭
+gui_config = "rect,ellipse,arrow,number,line,text,mosaic,eraser,|,undo,redo,|,pin,clipboard,save,close"
+# 参数只少不多
+# Only fewer parameters are allowed
+long_gui_config = "pin,clipboard,save,close"
