@@ -6,10 +6,75 @@ patch:
       - wanxiang_algebra:/pro/直接辅助 #辅助码升级为：直接辅助和间接辅助两种类型，都是句中任意，不同点在于直接辅助是nire=你  而间接则需要/引导  ni/re=你 ，在这个基础上直接辅助支持拼音后任意位置数字声调参与，间接辅助声调在/引导前参与
       - 小鹤双拼提权 #本文件末尾，有自然码和小鹤的可以用
   ##########################以上格式受指令初始化控制，最好保持格式不变，如果发生变更请不要使用指令修改相关数据#####################################
+
+  # 开关
+  # reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
+  # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+  # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+  switches:
+    - name: ascii_mode # 中英输入状态
+      states: [中文, 英文]
+    - name: ascii_punct # 中英标点
+      states: [中标, 英标]
+      reset: 0
+    - name: full_shape #全角、半角字符输出
+      states: [半角, 全角]
+    - name: emoji #候选出现emoji滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，因此默认为reset: 0，归属opencc emoji滤镜
+      states: [表情关, 表情开]
+      reset: 0
+    - name: chinese_english #候选进入翻译模式滤镜，会显示在相应的候选后面，万象侧重于tips提示，避免候选被占用，快捷键配套ctrl+e,归属opencc 翻译滤镜
+      states: [翻译关, 翻译开]
+      reset: 0
+    - name: chaifen_switch #开启后在候选的注释里面实时显示辅助码的拆分提醒优先级高于普通辅助提醒，不开启则采用系统配置，快捷键配套ctrl+c,影响的是comment_format，归属：super_comment.lua
+      states: [拆分关, 拆分开]
+      reset: 1
+    - name: charset_filter #字符集过滤，默认开启8105通规显示，即小字集，可通过开关实时开启全字集，快捷键配套ctrl+g,归属：super_filter.lua
+      states: [大字集, 小字集]
+      reset: 1
+    - name: super_tips #开启后在输入编码后面的提示区显示实时的提示数据，受tips数据库影响，表情、翻译、车牌、符号等对应关系数据，并可实现句号上屏，不开启则默认，影响的是segment.prompt参数，归属：super_tips.lua
+      states: [提示关, 提示开]
+      reset: 1
+    - options: [raw_input, tone_display, full_pinyin] #开启后在输入编码的位置实时转换为带声调全拼或者不带声调全拼，不开启则采用系统配置原始编码，影响的是preedit_format,归属：super_preedit.lua
+      states: [原编码, 有声调, 无声调]
+      reset: 0 #对于开关组从0开始数，第几个就reset几可设为默认
+    - options: [comment_off, fuzhu_hint, tone_hint] #开启后在候选的注释里面实时显示辅助码或者全拼声调，不开启则采用系统配置，影响的是comment_format，快捷键配套ctrl+a,归属：super_comment.lua
+      states: [注释关, 辅助开, 读音开]
+      reset: 1
+    - options: [s2s, s2t, s2hk, s2tw] # 简繁转换开关组，可以在一个空选项和多个实际“- simplifier@s2hk”引入的项目之前切换，这是一个开关组，你可以将其中任意一个s2s等设置为toggle快捷键，多次按下将轮询
+      states: [简体, 通繁, 港繁, 臺繁]
+      reset: 0
+    - name: char_priority #多体现在编码重合但候选有单字或者多字的情况`引导的辅码查词时是否单字优先，全拼常见，类似于特定编码情况下、反查状态下的调序能力。归属：super_lookup.lua
+      states: [词组先, 单字先]
+      reset: 0
+
   #通过下面的设置可以让你自己的文件引入而与仓库custom_phrase.txt不同，防止更新时被仓库文件覆盖
   custom_phrase/user_dict: custom_phrase01 # 这里改成什么就需要手动创建同名的 custom_phrasexx.txt 文件在用户目录，这个文件主要用于置顶，编码为自定义编码的词汇
   #translator/packs/+:
   #- userxx                                  #导入根目录下名称为userxx.dict.yaml的自定义固定词典，编码要与固定词库一致，编码权重都不要少，形如姓名、专有名词公司名称等等
+
+  # 输入引擎
+  # 使用 *文件名*对象名 的语法直接加载 Lua 插件
+  # 挂载处理器 (处理快捷键)
+  "engine/processors/@next": lua_processor@*input_text*processor
+
+  # 在去重前挂载过滤器 (生成翻译候选词)
+  "engine/filters/@before 7": lua_filter@*input_text*filter
+
+  grammar:
+    language: wanxiang-lts-zh-hans
+    collocation_max_length: 8
+    collocation_min_length: 3
+    collocation_penalty: -10
+    non_collocation_penalty: -17
+    rear_penalty: -18
+    weak_collocation_penalty: -24
+
+  # Tips 配置项
+  tips:
+    # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
+    # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌
+    disabled_types: [化学式，车牌]
+
   # 将分词符指向一个不常用的按键（冒号）,第一位为视觉分词符，第二位为手动分词符
   speller/delimiter: "':"
   # 视觉分词符指向单引号，visual_delimiter 的处理依赖于预编辑区转换功能的开启状态。当 switches/@8/reset: 0 时，注释功能关闭，导致预编辑区处理被跳过。
@@ -19,11 +84,8 @@ patch:
   #   - "xform/:/'/"
   # 关闭数字后自动半角功能
   punctuator/digit_separators: commit
-  # 修改 switches 列表中第 9 项（索引为8）的默认状态。
-  # 0=原编码(双拼)，1=有声调全拼(shung1)，2=无声调全拼(shuang)
-  switches/@8/reset: 0
   #下面是候选数量，未来7890分别代表1234声，请候选长度不要大于6避免冲突
-  menu/page_size: 6
+
   #下面是超级注释相关
   super_comment: # 超级注释模块，子项配置 true 开启，false 关闭
     candidate_length: 1 # 候选词辅助码提醒的生效长度，0为关闭  但同时清空其它，应当使用上面开关来处理
@@ -105,13 +167,6 @@ patch:
     # 次选和三选
     - { accept: semicolon, send: 2, when: has_menu } # 分号次选
     - { accept: apostrophe, send: 3, when: has_menu } # 单引号三选
-
-  # 使用 *文件名*对象名 的语法直接加载 Lua 插件
-  # 挂载处理器 (处理快捷键)
-  "engine/processors/@next": lua_processor@*input_text*processor
-
-  # 在去重前挂载过滤器 (生成翻译候选词)
-  "engine/filters/@before 7": lua_filter@*input_text*filter
 
   # 快符功能：
   # a/、单字母组合，触发预设编码自动上屏快符，支持将值设为"repeat" 以支持对应按键重复上屏功能，custom>schema>lua最终合并键值
