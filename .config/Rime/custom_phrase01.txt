@@ -335,8 +335,9 @@
 色卡	sk	4
 算了	sl	5
 私立	sl	4
-扫码	sm	5
-扫描	sm	4
+私募	sm	5
+扫码	sm	4
+扫描	sm	3
 思念	sn	5
 随你	sn	4
 索赔	sp	5
@@ -6435,6 +6436,7 @@
 还是	hdu	5
 海蜇	hdv	5
 还行	hdx	5
+还有	hdy	5
 何妨	hef	5
 何尝	hei	5
 很爱	hfa	5
@@ -7685,6 +7687,7 @@
 然而	rje	5
 染发	rjf	5
 染缸	rjg	5
+然后	rjh	5
 燃具	rjj	5
 燃气	rjq	5
 染色	rjs	5
@@ -7931,7 +7934,8 @@
 剔除	tii	5
 提前	tiq	5
 体制	tiv	5
-弹出	tji	5
+弹窗	tji	5
+弹出	tji	4
 贪念	tjn	5
 谈着	tjv	5
 毯子	tjz	5
@@ -7946,6 +7950,7 @@
 填充	tmi	5
 天年	tmn	5
 天平	tmp	5
+天气	tmq	5
 天色	tms	5
 天上	tmu	5
 天涯	tmy	5
@@ -8281,6 +8286,7 @@
 中期	vsq	5
 中途	vst	5
 忠实	vsu	5
+中文	vsw	5
 主体	vut	5
 追高	vvg	5
 坠毁	vvh	5

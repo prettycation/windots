@@ -1,5 +1,6 @@
 /.source/
 *.log*
+*.bak*
 sync.py
 lazy-lock.json
 password.yml
