@@ -8,7 +8,7 @@
 # 匹配是指替换规则：当您输入“触发词”字符串时，
 # 它会被“替换为”的字符串所替代。
 #
-# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
 
 matches:
   # 简单的文本替换

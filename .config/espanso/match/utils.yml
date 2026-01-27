@@ -20,7 +20,7 @@ matches:
       type: shell
       params:
         cmd: "curl 'https://api.ipify.org'"
-        
+
 # 输出你当前位置的天气信息
 - trigger: ":weather"
   replace: "{{output}}"
@@ -66,7 +66,7 @@ matches:
     type: date
     params:
       format: "%d/%m/%y"
-      
+
 # 输出当前时间 (24小时制)
 - trigger: :time
   replace: "{{time}}"
@@ -75,7 +75,7 @@ matches:
     type: date
     params:
       format: "%H:%M"
-      
+
 # 输出当前月份和年份 (例如: December 2025)
 - trigger: :month
   replace: "{{date}}"
@@ -84,7 +84,7 @@ matches:
     type: date
     params:
       format: "%B %Y"
-      
+
 # ===================================================================
 # 实用工具与代码片段
 # ===================================================================
@@ -107,7 +107,7 @@ matches:
       - '|ᵔ‿ᵔ|'
       - '⤜(*﹏*)⤏'
       - 'ツ'
-      
+
 # 输出 MIT 许可证的简短声明 (年份会自动更新)
 - trigger: :mit-short
   replace: "Licensed under MIT X11, © Alicia Sykes {{year}}: https://aliciasykes.com"
@@ -121,11 +121,11 @@ matches:
     type: shell
     params:
       cmd: "curl 'https://gist.githubusercontent.com/Lissy93/143d2ee01ccc5c052a17/raw/a8ac96cd15847a231931b561d95d2de47066fd33/LICENSE.MD'"
-      
+
 # 作者的个人邮件签名
 - trigger: :kr
   replace: "Kind Regards,\nAlicia\n"
-  
+
 # 从 whatthecommit.com 获取一条有趣的 commit 消息 (需要 curl)
 - trigger: :wtc
   replace: "{{output}}"
@@ -133,10 +133,10 @@ matches:
   - name: output
     type: shell
     params: {cmd: "curl -s whatthecommit.com/index.txt"}
-   
+
 # 使用 Lesspass 为给定账户生成密码
 # 注意: 需要先安装 Lesspass 命令行工具, 详情见:
-# https://github.com/lesspass/lesspass/tree/master/cli   
+# https://github.com/lesspass/lesspass/tree/master/cli
 - trigger: :pass
   replace: "{{lesspass}}"
   vars:

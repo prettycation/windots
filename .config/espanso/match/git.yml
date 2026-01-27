@@ -1,9 +1,10 @@
+yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
 matches:
   - trigger: "g.ck"
     replace: "git checkout "
 
   - trigger: "g.cm"
-    replace: 'git commit -m "$|$"'
+    replace: "git commit --amend --no-edit"
 
   - trigger: "g.cl"
     replace: "git clone "
@@ -17,5 +18,8 @@ matches:
   - trigger: "g.ps"
     replace: "git push --force-with-lease $|$"
 
-  - trigger: "g.rm"
-    replace: "git remote add upstream "
+  - trigger: "g.rmt"
+    replace: "git remote add upstream $|$"
+
+  - trigger: "g.rmv"
+    replace: " git rm --cached $|$"
