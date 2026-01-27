@@ -239,7 +239,13 @@
       "controlStyles[39].styles[1]": "Width=500",
       "controlStyles[39].styles[2]": "MaxWidth=500",
       "controlStyles[40].target": "StartMenu:ExpandedFolderList",
-      "controlStyles[40].styles[0]": "Margin=-50,0,-50,0"
+      "controlStyles[40].styles[0]": "Margin=-50,0,-50,0",
+      "controlStyles[41].target": "MenuFlyoutPresenter",
+      "controlStyles[41].styles[0]": "Background:=<AcrylicBrush TintColor=\"#1e1e2e\" TintLuminosityOpacity=\"1\" TintOpacity=\"1\" Opacity=\"1\" FallbackColor=\"#1e1e2e\"/>",
+      "controlStyles[41].styles[1]": "BorderThickness=1.5",
+      "controlStyles[41].styles[2]": "CornerRadius=10",
+      "controlStyles[41].styles[3]": "Padding=2,4,2,4",
+      "controlStyles[41].styles[4]": "BorderBrush=#f5e0dc"
     }
   },
   "Windows 11 Taskbar Styler": {

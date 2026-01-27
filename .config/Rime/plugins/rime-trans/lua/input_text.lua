@@ -37,9 +37,9 @@ local processor = {}
 function processor.func(key_event, env)
     local context = env.engine.context
     
-    -- 检查是否是配置的快捷键（这里使用 Control+y 作为默认快捷键）
-    if key_event:repr() == "Control+y" then
-        log.info("hotkey Control+y pressed")
+    -- 检查是否是配置的快捷键（这里使用 Control+e 作为默认快捷键）
+    if key_event:repr() == "Control+e" then
+        log.info("hotkey Control+e pressed")
         -- 获取当前选中的候选词
         local selected_candidate = context:get_selected_candidate()
         if selected_candidate then

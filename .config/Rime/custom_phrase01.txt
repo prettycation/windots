@@ -7659,6 +7659,7 @@
 仍可	rgk	5
 扔了	rgl	5
 仍能	rgn	5
+仍然	rgr	5
 仍是	rgu	5
 仍未	rgw	5
 扔下	rgx	5
