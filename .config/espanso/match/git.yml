@@ -23,3 +23,6 @@ matches:
 
   - trigger: "g.rmv"
     replace: " git rm --cached $|$"
+
+  - trigger: "g.fc"
+    replace: "git fetch upstream"
