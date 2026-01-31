@@ -325,7 +325,7 @@ keymap = [
     { on = "<Enter>", run = "close --submit", desc = "提交确认" },
 
     { on = "n", run = "close",          desc = "取消确认" },
-    { on = "y", run = "close --submit", desc = "提交确认" },
+    { on = "<Space>", run = "close --submit", desc = "提交确认" },
 
     { on = "k", run = "arrow prev", desc = "上一行" },
     { on = "j", run = "arrow next", desc = "下一行" },
