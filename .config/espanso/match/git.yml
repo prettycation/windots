@@ -15,8 +15,16 @@ matches:
   - trigger: "g.rs"
     replace: "git reset --hard upstream/main"
 
+  # git push
+
   - trigger: "g.ps"
     replace: "git push --force-with-lease $|$"
+
+  - trigger: "g.pd"
+    replace: "git push upstream --delete feat/"
+
+  - trigger: "g.pu"
+    replace: "git push -u upstream feat/"
 
   - trigger: "g.rmt"
     replace: "git remote add upstream $|$"
@@ -26,3 +34,6 @@ matches:
 
   - trigger: "g.fc"
     replace: "git fetch upstream"
+
+  - trigger: "g.br"
+    replace: "git branch -m feat/"
