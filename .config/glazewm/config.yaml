@@ -107,6 +107,7 @@ window_rules:
       - window_process: { equals: "copyq" }
       - window_process: { equals: "msrdc" }
       - window_process: { equals: "ToDesk" }
+      - window_process: { equals: "SNIBypassGUI" }
 
   # 强制浮动
   - commands: ["set-floating"]
