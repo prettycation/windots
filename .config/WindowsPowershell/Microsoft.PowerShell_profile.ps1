@@ -329,7 +329,10 @@ $ENV:FZF_DEFAULT_OPTS=@"
 
 # 8. 将 scoop-search 集成到 PowerShell
 # Invoke-Expression (&scoop-search --hook)
-. ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
+# . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
+
+# 8. 将 sfsu 集成到 PowerShell
+Invoke-Expression (&sfsu hook)
 
 # 9. Zoxide (smart cd) Initialization (最后一步)
 # 将 zoxide 的钩子注入到修改过的提示符中。
