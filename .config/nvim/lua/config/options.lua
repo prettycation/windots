@@ -13,3 +13,6 @@ if vim.fn.has("win32") == 1 then
   vim.opt.shellquote = ""
   vim.opt.shellxquote = ""
 end
+
+vim.opt.linebreak = true -- 换行时不会从单词中间断开
+vim.opt.breakindent = true -- 换行后保持缩进
