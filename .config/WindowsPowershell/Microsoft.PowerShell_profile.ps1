@@ -19,11 +19,24 @@ $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
 # 自动重绘 fastfetch
 # ===================================================================‘
 function global:Clear-Host {
-    [Console]::Clear()
+    # 只有当处于交互式控制台且句柄有效时才尝试清除
+    if ($Host.Name -eq "ConsoleHost" -and [Console]::Title) {
+        try {
+            [Console]::Clear()
+        } catch {
+            # 如果还是失败，回退到原生的清除方式
+            Microsoft.PowerShell.Core\Clear-Host
+        }
+    } else {
+        # 在 Neovim 等后台环境中，只做最简单的清除或跳过
+        Microsoft.PowerShell.Core\Clear-Host
+    }
+
     if (Get-Command fastfetch -ErrorAction SilentlyContinue) {
         fastfetch -c "$env:APPDATA\fastfetch\config.jsonc"
     }
 }
+
 
 # ===================================================================
 # ZY Function (Zoxide + Yazi with CD on quit)
@@ -332,7 +345,7 @@ $ENV:FZF_DEFAULT_OPTS=@"
 # . ([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
 
 # 8. 将 sfsu 集成到 PowerShell
-Invoke-Expression (&sfsu hook)
+Invoke-Expression (&sfsu hook --disable cleanup --disable cache)
 
 # 9. Zoxide (smart cd) Initialization (最后一步)
 # 将 zoxide 的钩子注入到修改过的提示符中。
