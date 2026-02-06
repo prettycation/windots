@@ -29,10 +29,10 @@ return {
   {
     "Kurama622/llm.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        -- 集成 mini.diff
-        {     
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      -- 集成 mini.diff
+      {
         "nvim-mini/mini.diff",
         version = false,
         config = function()
@@ -43,14 +43,14 @@ return {
             },
           })
         end,
-        },
+      },
     },
     cmd = { "LLMSessionToggle", "LLMSelectedTextHandler", "LLMAppHandler" },
     config = function()
-      local tools = require("llm.common.tools") -- 修正：新版本路径通常在 common.tools
-      
+      local tools = require("llm.tools")
+
       require("llm").setup({
-        
+
         -- enable_trace = true,
         -- [[ cloudflare ]]     params: api_type =  "workers-ai" | "openai" | "zhipu" | "ollama"
         -- model = "@cf/qwen/qwen1.5-14b-chat-awq",
@@ -122,20 +122,21 @@ return {
         -- end,
 
         -- [[ siliconflow ]]
-        url = "https://api.siliconflow.cn/v1/chat/completions",
-        model = "THUDM/glm-4-9b-chat",
-        api_type = "openai",
-        max_tokens = 4096,
-        -- -- model = "google/gemma-2-9b-it",
-        -- -- model = "meta-llama/Meta-Llama-3.1-8B-Instruct",
-        -- model = "Qwen/Qwen2.5-7B-Instruct",
-        -- -- model = "Qwen/Qwen2.5-Coder-7B-Instruct",
-        -- -- model = "internlm/internlm2_5-7b-chat",
-        -- [optional: fetch_key]
-        fetch_key = function()
-          return vim.env.SILICONFLOW_TOKEN
-        end,
+        -- url = "https://api.siliconflow.cn/v1/chat/completions",
+        -- model = "THUDM/glm-4-9b-chat",
+        -- api_type = "openai",
+        -- max_tokens = 4096,
+        -- -- -- model = "google/gemma-2-9b-it",
+        -- -- -- model = "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        -- -- model = "Qwen/Qwen2.5-7B-Instruct",
+        -- -- -- model = "Qwen/Qwen2.5-Coder-7B-Instruct",
+        -- -- -- model = "internlm/internlm2_5-7b-chat",
+        -- -- [optional: fetch_key]
+        -- fetch_key = function()
+        --   return vim.env.SILICONFLOW_TOKEN
+        -- end,
 
+        -- [[ sukaka ]]
 
         url = "https://catiecli.sukaka.top/v1/chat/completions",
         model = "gcli-gemini-3-flash-preview",
@@ -206,7 +207,7 @@ return {
           -- The keyboard mapping for the output and input windows in "float" style.
           ["Session:Toggle"]    = { mode = "n", key = "<leader>ac" },
           ["Session:Close"]     = { mode = "n", key = {"<esc>", "Q"} },
-          
+
           -- Scroll [default]
           ["PageUp"]            = { mode = {"i","n"}, key = "<C-b>" },
           ["PageDown"]          = { mode = {"i","n"}, key = "<C-f>" },
@@ -266,10 +267,10 @@ You must:
             handler = tools.action_handler,
             opts = {
               fetch_key = function()
-                return vim.env.GITHUB_TOKEN
+                return vim.env.CLIPROXY_KEY
               end,
-              url = "https://models.inference.ai.azure.com/chat/completions",
-              model = "gpt-4o-mini",
+              url = "http://127.0.0.1:8317/v1/chat/completions",
+              model = "glm-4.7",
               api_type = "openai",
               only_display_diff = true,
               templates = {
@@ -283,11 +284,11 @@ You must:
             handler = tools.qa_handler,
             opts = {
               fetch_key = function()
-                return vim.env.GLM_KEY
+                return vim.env.CHAT_ANYWHERE_KEY
               end,
-              url = "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-              model = "glm-4-flash",
-              api_type = "zhipu",
+              url = "https://api.chatanywhere.tech/v1/chat/completions",
+              model = "gpt-5-mini",
+              api_type = "openai",
 
               component_width = "60%",
               component_height = "50%",
@@ -333,14 +334,15 @@ You must:
             -- prompt = "Translate the following text to English, please only return the translation",
             opts = {
               fetch_key = function()
-                return vim.env.GLM_KEY
+                return vim.env.CHAT_ANYWHERE_KEY
               end,
-              url = "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-              model = "glm-4-flash",
-              api_type = "zhipu",
+              url = "https://api.chatanywhere.tech/v1/chat/completions",
+              model = "gpt-5-mini",
+              api_type = "openai",
               -- args = [=[return string.format([[curl %s -N -X POST -H "Content-Type: application/json" -H "Authorization: Bearer %s" -d '%s']], url, LLM_KEY, vim.fn.json_encode(body))]=],
-              exit_on_move = true,
-              enter_flexible_window = false,
+              exit_on_move = false,
+              enter_flexible_window = true,
+              enable_cword_context = true,
             },
           },
           CodeExplain = {
@@ -348,20 +350,20 @@ You must:
             prompt = "Explain the following code, please only return the explanation, and answer in Chinese",
             opts = {
               fetch_key = function()
-                return vim.env.GLM_KEY
+                return vim.env.LLM_KEY
               end,
-              url = "https://open.bigmodel.cn/api/paas/v4/chat/completions",
-              model = "glm-4-flash",
-              api_type = "zhipu",
+              url = "https://catiecli.sukaka.top/v1/chat/completions",
+              model = "gcli-gemini-3-flash-preview",
+              api_type = "openai",
               enter_flexible_window = true,
             },
           },
           CommitMsg = {
             handler = tools.flexi_handler,
             prompt = function()
-          -- Source: https://andrewian.dev/blog/ai-git-commits
-          return string.format(
-            [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
+              -- Source: https://andrewian.dev/blog/ai-git-commits
+              return string.format(
+                [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
       1. First line: conventional commit format (type: concise description) (remember to use semantic types like feat, fix, docs, style, refactor, perf, test, chore, etc.)
       2. Optional bullet points if more context helps:
         - Keep the second line blank
@@ -395,16 +397,16 @@ You must:
       %s
       ```
       ]],
-            vim.fn.system("git diff --no-ext-diff --staged")
-          )
-        end,
+                vim.fn.system("git diff --no-ext-diff --staged")
+              )
+            end,
 
             opts = {
               fetch_key = function()
-                return vim.env.CHAT_ANYWHERE_KEY
+                return vim.env.CLIPROXY_KEY
               end,
-              url = "https://api.chatanywhere.tech/v1/chat/completions",
-              model = "gpt-4o-mini",
+              url = "http://127.0.0.1:8317/v1/chat/completions",
+              model = "glm-4.7",
               api_type = "openai",
               enter_flexible_window = true,
               apply_visual_selection = false,
