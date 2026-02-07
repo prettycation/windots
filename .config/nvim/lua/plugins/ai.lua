@@ -150,7 +150,7 @@ return {
         top_p = 0.7,
         prompt = "You are a helpful chinese assistant.",
 
-        -- 样式与 UI 配置 (保留开发者原始设置)
+        -- 样式与 UI 配置
         spinner = {
           text = { "󰧞󰧞", "󰧞󰧞", "󰧞󰧞", "󰧞󰧞" },
           hl = "Title",
@@ -163,7 +163,7 @@ return {
           diff = {
             layout = "vertical",
             opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-            provider = "mini_diff", -- 如果未安装 mini.diff，请确保改为 default
+            provider = "mini_diff",
           },
         },
         -- style = "right",
@@ -237,8 +237,6 @@ return {
               },
             },
           },
-          -- 注意：此处的 OptimCompare 开发者指定了不同的 Key/URL
-          -- 如果你想全部用 Gemini，可以将下面的 fetch_key/url/model 删掉
           OptimCompare = {
             handler = tools.action_handler,
             opts = {

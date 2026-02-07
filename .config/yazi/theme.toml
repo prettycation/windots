@@ -9,11 +9,16 @@
 # 当前工作目录
 cwd = { fg = "#94e2d5" }
 
+# 光标悬停行的颜色
+hovered         = { fg = "#11111b", bg = "#89b4fa", bold = true }
+# 多选模式下选中的样式
+selection_style = { bg = "#585b70" }
+
 # 搜索
 find_keyword  = { fg = "#f9e2af", bold = true, italic = true, underline = true }
 find_position = { fg = "#f5c2e7", bg = "reset", bold = true, italic = true }
 
-# 标记 (复制、剪切等)
+# 标记 (复制、剪切等图标)
 marker_copied   = { fg = "#a6e3a1", bg = "#a6e3a1" }
 marker_cut      = { fg = "#f38ba8", bg = "#f38ba8" }
 marker_marked   = { fg = "#89dceb", bg = "#89dceb" }
@@ -31,16 +36,17 @@ border_style  = { fg = "#6c7086" }
 # : }}}
 
 
-# : Indicator (新增部分) {{{
+# : Indicator (指示器) {{{
 
 [indicator]
-current = { reversed = true }
-preview = { underline = true }
+# 修改：不再使用 reversed = true，防止出现白色块
+current = { fg = "#11111b", bg = "#89b4fa" }
+preview = { fg = "#89b4fa", underline = true }
 
 # : }}}
 
 
-# : Tabs {{{
+# : Tabs (标签页) {{{
 
 [tabs]
 active   = { fg = "#11111b", bg = "#89b4fa", bold = true }
@@ -101,7 +107,7 @@ inactive = {}
 border   = { fg = "#cba6f7" }
 title    = {}
 value    = {}
-selected = { reversed = true }
+selected = { bg = "#585b70" } # 修改：输入框选中背景改为 Surface2 灰色
 
 # : }}}
 
@@ -119,7 +125,7 @@ border = { fg = "#cba6f7" }
 [tasks]
 border  = { fg = "#cba6f7" }
 title   = {}
-hovered = { fg = "#f5c2e7", bold = true }
+hovered = { fg = "#f5c2e7", bold = true, underline = true }
 
 # : }}}
 
@@ -142,7 +148,7 @@ separator_style = { fg = "#6c7086" }
 [help]
 on      = { fg = "#94e2d5" }
 run     = { fg = "#f5c2e7" }
-hovered = { reversed = true, bold = true }
+hovered = { fg = "#11111b", bg = "#cdd6f4", bold = true }
 footer  = { fg = "#11111b", bg = "#cdd6f4" }
 
 # : }}}
