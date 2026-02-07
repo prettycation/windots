@@ -21,7 +21,7 @@ bars:
     window_flags:
       always_on_top: true
       windows_app_bar: true
-      hide_on_fullscreen: true
+      hide_on_fullscreen: false
     dimensions:
       width: "100%"
       height: 32
@@ -30,15 +30,17 @@ bars:
       left: 6
       bottom: 2
       right: 6
+    animation:
+      enabled: false
     widgets:
       left: ["glazewm_workspaces", "active_window"]
       center: []
       right:
         - "systray"
-        - "traffic" # 已更新逻辑
+        - "traffic"
         - "cpu"
-        - "memory" # 新增
-        - "disk" # 新增
+        - "memory"
+        - "disk"
         - "volume"
         - "weather"
         - "clock"
