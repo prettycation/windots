@@ -401,10 +401,10 @@ You must:
 
             opts = {
               fetch_key = function()
-                return vim.env.CLIPROXY_KEY
+                return vim.env.LLM_KEY
               end,
-              url = "http://127.0.0.1:8317/v1/chat/completions",
-              model = "glm-4.7",
+              url = "https://catiecli.sukaka.top/v1/chat/completions",
+              model = "gcli-gemini-3-pro-preview",
               api_type = "openai",
               enter_flexible_window = true,
               apply_visual_selection = false,
@@ -483,79 +483,79 @@ You must:
               language = "Chinese",
             },
           },
-          Completion = {
-            handler = tools.completion_handler,
-            opts = {
-              -------------------------------------------------
-              ---                  ollama
-              -------------------------------------------------
-              -- -- url = "http://localhost:11434/api/generate",
-              -- url = "http://localhost:11434/v1/completions",
-              -- model = "qwen2.5-coder:1.5b",
-              -- api_type = "ollama",
-
-              -------------------------------------------------
-              ---                 deepseek
-              -------------------------------------------------
-              -- url = "https://api.deepseek.com/beta/completions",
-              -- model = "deepseek-chat",
-              -- api_type = "deepseek",
-              -- fetch_key = function()
-              --   return vim.env.DEEPSEEK_TOKEN
-              -- end,
-
-              -------------------------------------------------
-              ---                 codeium
-              -------------------------------------------------
-              api_type = "codeium",
-              style = "virtual_text",
-
-              n_completions = 1,
-              context_window = 512,
-              max_tokens = 256,
-              filetypes = { sh = false },
-              default_filetype_enabled = true,
-              auto_trigger = true,
-              -- style = "blink.cmp",
-              -- style = "nvim-cmp",
-              -- style = "virtual_text",
-              keymap = {
-                toggle = {
-                  mode = "n",
-                  keys = "<leader>cp",
-                },
-                virtual_text = {
-                  accept = {
-                    mode = "i",
-                    keys = "<A-a>",
-                  },
-                  next = {
-                    mode = "i",
-                    keys = "<A-n>",
-                  },
-                  prev = {
-                    mode = "i",
-                    keys = "<A-p>",
-                  },
-                },
-              },
-            },
-          },
+          -- Completion = {
+          --   handler = tools.completion_handler,
+          --   opts = {
+          --     -------------------------------------------------
+          --     ---                  ollama
+          --     -------------------------------------------------
+          --     -- -- url = "http://localhost:11434/api/generate",
+          --     -- url = "http://localhost:11434/v1/completions",
+          --     -- model = "qwen2.5-coder:1.5b",
+          --     -- api_type = "ollama",
+          --
+          --     -------------------------------------------------
+          --     ---                 deepseek
+          --     -------------------------------------------------
+          --     -- url = "https://api.deepseek.com/beta/completions",
+          --     -- model = "deepseek-chat",
+          --     -- api_type = "deepseek",
+          --     -- fetch_key = function()
+          --     --   return vim.env.DEEPSEEK_TOKEN
+          --     -- end,
+          --
+          --     -------------------------------------------------
+          --     ---                 codeium
+          --     -------------------------------------------------
+          --     api_type = "codeium",
+          --     style = "virtual_text",
+          --
+          --     n_completions = 1,
+          --     context_window = 512,
+          --     max_tokens = 256,
+          --     filetypes = { sh = false },
+          --     default_filetype_enabled = true,
+          --     auto_trigger = true,
+          --     -- style = "blink.cmp",
+          --     -- style = "nvim-cmp",
+          --     -- style = "virtual_text",
+          --     keymap = {
+          --       toggle = {
+          --         mode = "n",
+          --         keys = "<leader>cp",
+          --       },
+          --       virtual_text = {
+          --         accept = {
+          --           mode = "i",
+          --           keys = "<A-a>",
+          --         },
+          --         next = {
+          --           mode = "i",
+          --           keys = "<A-n>",
+          --         },
+          --         prev = {
+          --           mode = "i",
+          --           keys = "<A-p>",
+          --         },
+          --       },
+          --     },
+          --   },
+          -- },
         },
       })
     end,
     keys = {
       { "<leader>ac", mode = "n", "<cmd>LLMSessionToggle<cr>", desc = " Toggle LLM Chat" },
       { "<leader>ts", mode = "x", "<cmd>LLMAppHandler WordTranslate<cr>", desc = " Word Translate" },
-      { "<leader>ae", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>", desc = " Explain the Code" },
+      { "<leader>ax", mode = "v", "<cmd>LLMAppHandler CodeExplain<cr>", desc = " Explain the Code" },
       { "<leader>at", mode = "n", "<cmd>LLMAppHandler Translate<cr>", desc = " AI Translator" },
       { "<leader>tc", mode = "x", "<cmd>LLMAppHandler TestCode<cr>", desc = " Generate Test Cases" },
       { "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimCompare<cr>", desc = " Optimize the Code" },
-      { "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>", desc = " Check Account Information" },
+      -- { "<leader>au", mode = "n", "<cmd>LLMAppHandler UserInfo<cr>", desc = " Check Account Information" },
       { "<leader>ag", mode = "n", "<cmd>LLMAppHandler CommitMsg<cr>", desc = " Generate AI Commit Message" },
       { "<leader>ad", mode = "v", "<cmd>LLMAppHandler DocString<cr>", desc = " Generate a Docstring" },
       { "<leader>ak", mode = { "v", "n" }, "<cmd>LLMAppHandler Ask<cr>", desc = " Ask LLM" },
-      { "<leader>aa", mode = { "v", "n" }, "<cmd>LLMAppHandler AttachToChat<cr>", desc = " Ask LLM (multi-turn)" },
+      -- { "<leader>aa", mode = { "v", "n" }, "<cmd>LLMAppHandler AttachToChat<cr>", desc = " Ask LLM (multi-turn)" },
       -- { "<leader>ao", mode = "x", "<cmd>LLMAppHandler OptimizeCode<cr>" },
       -- { "<leader>ae", mode = "v", "<cmd>LLMSelectedTextHandler 请解释下面这段代码<cr>" },
       -- { "<leader>ts", mode = "x", "<cmd>LLMSelectedTextHandler 英译汉<cr>" },

@@ -8,7 +8,7 @@ return {
           settings = {
             basedpyright = {
               analysis = {
-                typeCheckingMode = "standard", -- 可选: "off", "basic", "standard", "strict"
+                typeCheckingMode = "basic", -- 可选: "off", "basic", "standard", "strict"
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
               },

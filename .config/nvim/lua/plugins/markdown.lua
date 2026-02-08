@@ -8,7 +8,7 @@ return {
         branch = "main",
         config = function()
           vim.api.nvim_create_autocmd("FileType", {
-            pattern = { "llm", "markdown" },
+            pattern = { "llm", "markdown", "Avante" },
             callback = function()
               vim.treesitter.start(0, "markdown")
             end,
@@ -58,5 +58,6 @@ return {
         code = { style = "normal" },
       })
     end,
-  }
+  },
 }
+
