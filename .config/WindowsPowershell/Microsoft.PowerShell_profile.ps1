@@ -126,7 +126,7 @@ function Switch-Java {
     param (
         [string]$Version
     )
-    
+
     # 如果不带参数运行，则列出所有已安装的jdk版本
     if (-not $Version) {
         Write-Host "用法: jdk <版本名>" -ForegroundColor Yellow
@@ -148,10 +148,10 @@ function Switch-Java {
 
     # 使用 scoop prefix 动态获取路径
     $javaPath = scoop prefix $Version
-    
+
     # 更新 JAVA_HOME 环境变量 (用户级别)
     [System.Environment]::SetEnvironmentVariable('JAVA_HOME', $javaPath, 'User')
-    
+
     # 更新当前会话的 JAVA_HOME
     $env:JAVA_HOME = $javaPath
 
@@ -183,7 +183,7 @@ function Open-WifiMenu {
     # 检查扫描命令是否存在
     if (Get-Command Scan-WifiAPs -ErrorAction SilentlyContinue) {
         Write-Host "Scanning for Wi-Fi networks..." -ForegroundColor Cyan
-        
+
         try {
             $networks = Scan-WifiAPs -ErrorAction Stop
 
@@ -202,7 +202,7 @@ function Open-WifiMenu {
                     # 4. 解析 SSID
                     # 使用制表符分割，只取第一部分，这样就能完美处理带空格的 WiFi 名
                     $selected_ssid = $selected_line -split "`t" | Select-Object -First 1
-                    
+
                     if (-not [string]::IsNullOrWhiteSpace($selected_ssid)) {
                         Write-Host "Connecting to '$selected_ssid'..." -ForegroundColor Yellow
                         # 使用 netsh 连接 (仅适用于已保存过密码的网络)
@@ -225,11 +225,11 @@ function Open-WifiMenu {
 # 5. 断开连接函数 (自动查找接口名)
 function Close-WifiConnection {
     Write-Host "Disconnecting..." -ForegroundColor Yellow
-    
+
     # 自动获取当前活动的无线接口名称
     # netsh wlan show interfaces 输出中包含 "Name : Wi-Fi" 这样的行
     $interfaceLine = netsh wlan show interfaces | Select-String "\sName\s+:\s+(.+)"
-    
+
     if ($interfaceLine) {
         # 提取接口名称
         $interfaceName = $interfaceLine.Matches.Groups[1].Value.Trim()

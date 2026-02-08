@@ -18,7 +18,7 @@
   "OpenHistoryHotkey": "Ctrl\u002BH",
   "CycleHistoryUpHotkey": "Alt \u002B Up",
   "CycleHistoryDownHotkey": "Alt \u002B Down",
-  "DialogJumpHotkey": "Alt \u002B E",
+  "DialogJumpHotkey": "",
   "Language": "zh-cn",
   "Theme": "Catppuccin Mocha",
   "UseDropShadowEffect": true,
@@ -53,19 +53,19 @@
   "TimeFormat": "hh:mm tt",
   "DateFormat": "MM\u0027/\u0027dd ddd",
   "FirstLaunch": false,
-  "SettingWindowWidth": 2033.6000000000001,
-  "SettingWindowHeight": 1068.8,
+  "SettingWindowWidth": 1507.2,
+  "SettingWindowHeight": 773.6,
   "SettingWindowTop": 76,
-  "SettingWindowLeft": 7.2,
+  "SettingWindowLeft": 14.4,
   "SettingWindowState": 0,
   "ShowPlaceholder": true,
   "PlaceholderText": "",
   "ShowHomePage": true,
   "ShowHistoryResultsForHomePage": false,
   "MaxHistoryResultsToShowForHomePage": 5,
-  "AutoRestartAfterChanging": false,
+  "AutoRestartAfterChanging": true,
   "ShowUnknownSourceWarning": true,
-  "AutoUpdatePlugins": false,
+  "AutoUpdatePlugins": true,
   "CustomExplorerIndex": 0,
   "CustomExplorerList": [
     {
@@ -147,7 +147,7 @@
   "QuerySearchPrecision": "Regular",
   "AutoUpdates": false,
   "WindowLeft": 768,
-  "WindowTop": 308.1,
+  "WindowTop": 236.1,
   "PreviousScreenWidth": 0,
   "PreviousScreenHeight": 0,
   "PreviousDpiX": 0,
@@ -156,7 +156,7 @@
   "CustomWindowTop": 0,
   "KeepMaxResults": false,
   "MaxResultsToShow": 5,
-  "ActivateTimes": 1455,
+  "ActivateTimes": 1656,
   "CustomPluginHotkeys": [],
   "CustomShortcuts": [],
   "DontPromptUpdateMsg": false,
@@ -185,8 +185,8 @@
   "AnimationSpeed": "Medium",
   "CustomAnimationLength": 360,
   "PluginSettings": {
-    "PythonExecutablePath": "",
-    "NodeExecutablePath": "",
+    "PythonExecutablePath": "F:\\software\\Scoop\\apps\\python312\\current\\pythonw.exe",
+    "NodeExecutablePath": "E:\\programfiles\\dev\\nodejs\\node.exe",
     "Plugins": {
       "0ECADE17459B49F587BF81DC3A125110": {
         "ID": "0ECADE17459B49F587BF81DC3A125110",
@@ -350,6 +350,42 @@
         "Version": "2.0.2",
         "ActionKeywords": [
           "s"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "028C97F910684231AB09B5DD5997D424": {
+        "ID": "028C97F910684231AB09B5DD5997D424",
+        "Name": "Obsidian",
+        "Version": "1.1.1",
+        "ActionKeywords": [
+          "ob"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "6c22cffe6b3546ec9087abe149c4a575": {
+        "ID": "6c22cffe6b3546ec9087abe149c4a575",
+        "Name": "GitHub",
+        "Version": "1.3.1",
+        "ActionKeywords": [
+          "gh"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "8533B2E5632A449F916D3658EABFB595": {
+        "ID": "8533B2E5632A449F916D3658EABFB595",
+        "Name": "Registry",
+        "Version": "1.0.0",
+        "ActionKeywords": [
+          "reg"
         ],
         "Priority": 0,
         "SearchDelayTime": null,
