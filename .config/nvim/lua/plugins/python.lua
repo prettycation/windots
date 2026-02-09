@@ -1,36 +1,50 @@
 return {
+  -- LSP Server
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        -- 禁用 pyright
+        pyright = {
+          enabled = false,
+        },
+
         -- 启用 basedpyright
         basedpyright = {
+          enabled = true,
           settings = {
             basedpyright = {
               analysis = {
-                typeCheckingMode = "basic", -- 可选: "off", "basic", "standard", "strict"
+                typeCheckingMode = "basic",
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
               },
             },
           },
         },
       },
-      -- 确保 Mason 安装它
-      setup = {
-        basedpyright = function()
-          -- 这里可以添加特定于 basedpyright 的初始化逻辑
-        end,
-      },
     },
   },
 
-  -- 让 Mason 自动下载二进制文件
+  -- Mason (自动安装/卸载)
   {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "basedpyright" })
+
+      -- 从安装列表中移除 pyright
+      for i, tool in ipairs(opts.ensure_installed) do
+        if tool == "pyright" then
+          table.remove(opts.ensure_installed, i)
+          break
+        end
+      end
+
+      -- 确保安装 basedpyright
+      if not vim.tbl_contains(opts.ensure_installed, "basedpyright") then
+        table.insert(opts.ensure_installed, "basedpyright")
+      end
     end,
   },
 }
