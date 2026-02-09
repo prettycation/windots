@@ -24,7 +24,7 @@ function global:Clear-Host {
         Microsoft.PowerShell.Core\Clear-Host
     }
     # 检查是否有 fastfetch 命令
-    # 2. 检查 $env:NVIM 是否为空 (如果不为空，则为 Neovim 内部，跳过显示)
+    # 检查 $env:NVIM 是否为空 (如果不为空，则为 Neovim 内部，跳过显示)
     if ((Get-Command fastfetch -ErrorAction SilentlyContinue) -and (-not $env:NVIM)) {
         fastfetch -c "$env:APPDATA\fastfetch\config.jsonc"
     }
@@ -304,12 +304,38 @@ Set-PSReadLineOption -Colors @{
 
 # 自动执行逻辑
 
-# Neovim Venv 自动激活
-# 放在 Starship 初始化之前，确保环境变量已就绪
-if ($env:VIRTUAL_ENV) {
-    $venvActivateScript = Join-Path $env:VIRTUAL_ENV "Scripts\Activate.ps1"
-    if (Test-Path $venvActivateScript) {
-        & $venvActivateScript
+# Neovim Venv/Conda 自动激活
+
+# 获取当前环境路径：优先取 VIRTUAL_ENV (uv/venv)，如果没有则取 CONDA_PREFIX (Conda)
+$currentEnv = if ($env:VIRTUAL_ENV) { $env:VIRTUAL_ENV } else { $env:CONDA_PREFIX }
+
+if ($currentEnv) {
+    # 尝试寻找标准的 Activate.ps1 (uv, venv, poetry)
+    $venvScript = Join-Path $currentEnv "Scripts\Activate.ps1"
+    
+    if (Test-Path $venvScript) {
+        # 情况 A: 标准 Venv
+        Write-Host "⚡ Auto-activating Venv (uv/std)..." -ForegroundColor Green
+        & $venvScript
+    } else {
+        # 情况 B: Conda 环境
+        if (Get-Command conda -ErrorAction SilentlyContinue) {
+            Write-Host "⚡ Auto-activating Conda..." -ForegroundColor Green
+            
+            # 注册 Hook (让 conda activate 生效)
+            (& conda "shell.powershell" "hook") | Out-String | Invoke-Expression
+            
+            # 提取环境名
+            $envName = Split-Path $currentEnv -Leaf
+            
+            # 激活
+            conda activate $envName
+            
+            # 确保 Starship 也能看到名字
+            if (-not $env:CONDA_DEFAULT_ENV) {
+                $env:CONDA_DEFAULT_ENV = $envName
+            }
+        }
     }
 }
 
@@ -346,6 +372,5 @@ Invoke-Expression (&sfsu hook --disable cleanup --disable cache --disable status
 Invoke-Expression (& { (zoxide init powershell) -join "`n" })
 
 # 初始化 md
+
 . "$(scoop prefix Cishoon.md)\md.ps1"
-
-
