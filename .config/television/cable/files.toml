@@ -1,0 +1,12 @@
+[metadata]
+name = "files"
+description = "Browser files (including symlinks)"
+
+[source]
+# 1. -t f : 只找文件 (不找目录条目)
+# 2. -L   : 跟随符号链接 (Follow symlinks)
+# 3. -H   : 显示隐藏文件
+command = ["fd -t f -L", "fd -t f -L -H"]
+
+[preview]
+command = "pwsh -NoProfile -Command \"if (Test-Path '{}' -PathType Container) { eza --tree --level=1 --color=always --icons '{}' } else { bat --color=always --style=numbers --line-range :500 '{}' }\""
