@@ -12,7 +12,7 @@ keymap = [
   { on = "_", run = "plugin zoom -1", desc = "缩小悬停文件" },
   { on = "<C-f>", run = "plugin tv", desc = "通过 telivision 跳转到文件" },
   { on = "<C-t>", run = "plugin tv text", desc = "使用 neovim 打开文件并跳转到该字符串所在的位置" },
-  { on = "<C-r>", run = "plugin tv dirs", desc = "通过 telivision 跳转到目录" },
+  { on = "<C-d>", run = "plugin tv dirs", desc = "通过 telivision 跳转到目录" },
 
   # Windows
   { on = [
@@ -47,8 +47,8 @@ keymap = [
   { on = "<Up>", run = "arrow prev", desc = "上一个文件" },
   { on = "<Down>", run = "arrow next", desc = "下一个文件" },
 
-  { on = "<C-u>", run = "arrow -50%", desc = "光标上移半页" },
-  { on = "<C-d>", run = "arrow 50%", desc = "光标下移半页" },
+  { on = "{", run = "arrow -50%", desc = "光标上移半页" },
+  { on = "}", run = "arrow 50%", desc = "光标下移半页" },
   { on = "<C-b>", run = "arrow -100%", desc = "光标上移一页" },
   { on = "<C-f>", run = "arrow 100%", desc = "光标下移一页" },
 

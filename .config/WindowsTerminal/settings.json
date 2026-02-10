@@ -80,7 +80,7 @@
             "elevate": false,
             "font": 
             {
-                "face": "FiraCode Nerd Font Mono",
+                "face": "FiraCode Nerd Font Mono,LXGW WenKai Mono GB",
                 "size": 14,
                 "weight": "light"
             },

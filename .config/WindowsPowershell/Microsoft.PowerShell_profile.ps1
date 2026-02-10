@@ -371,6 +371,9 @@ Invoke-Expression (&sfsu hook --disable cleanup --disable cache --disable status
 # 将 zoxide 的钩子注入到修改过的提示符中。
 Invoke-Expression (& { (zoxide init powershell) -join "`n" })
 
+# 将 tv 的钩子注入到修改过的提示符中
+Invoke-Expression (& { (tv init power-shell) -join "`n" })
+
 # 初始化 md
 
 . "$(scoop prefix Cishoon.md)\md.ps1"

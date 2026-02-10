@@ -1,42 +1,42 @@
-# CONFIGURATION FILE LOCATION ON YOUR SYSTEM:
+# 系统上的配置文件位置：
 # -------------------------------------------
-# Defaults:
+# 默认位置：
 # ---------
 #  Linux:   `$HOME/.config/television/config.toml`
 #  macOS:   `$HOME/.config/television/config.toml`
 #  Windows: `%LocalAppData%\television\config.toml`
 #
-# XDG dirs:
+# XDG 目录：
 # ---------
-# You may use XDG_CONFIG_HOME if set on your system.
-# In that case, television will expect the configuration file to be in:
+# 如果您的系统设置了 XDG_CONFIG_HOME，可以使用它。
+# 在这种情况下，television 将期望配置文件位于：
 # `$XDG_CONFIG_HOME/television/config.toml`
 #
 
-# General settings
+# 通用设置
 # ----------------------------------------------------------------------------
 tick_rate = 50
 default_channel = "files"
-# Shell settings
+# Shell 设置
 # --------------
-# Default shell used for executing commands (source, preview, actions).
-# Options: bash, zsh, fish, powershell, cmd, nu
-# If not specified, the shell is detected from the environment ($SHELL on Unix).
-# Channel-specific shell settings override this global setting.
+# 用于执行命令（源、预览、动作）的默认 Shell。
+# 选项：bash, zsh, fish, powershell, cmd, nu
+# 如果未指定，将从环境检测 Shell（Unix 上为 $SHELL）。
+# 特定频道的 Shell 设置会覆盖此全局设置。
 # shell = "bash"
-# History settings
+# 历史记录设置
 # ---------------
-# Maximum number of entries to keep in the global history (default: 100)
-# The history tracks search queries across all channels and sessions
-# Set to 0 to disable history functionality entirely
+# 全局历史记录中保留的最大条目数（默认：100）
+# 历史记录会跟踪所有频道和会话中的搜索查询
+# 设置为 0 以完全禁用历史记录功能
 history_size = 200
-# Whether to use global history (default: false)
-# When true: history navigation shows entries from all channels
-# When false: history navigation is scoped to the current channel
+# 是否使用全局历史记录（默认：false）
+# 当为 true 时：历史导航显示所有频道的条目
+# 当为 false 时：历史导航仅限于当前频道
 global_history = false
 
 [ui]
-# How much space to allocate for the UI (in percentage of the screen)
+# 为 UI 分配多少空间（占屏幕百分比）
 # ┌─────────────────────────┐
 # │     Terminal screen     │
 # │  ┌───────────────────┐  │
@@ -47,30 +47,30 @@ global_history = false
 # │                         │
 # └─────────────────────────┘
 ui_scale = 100
-# What orientation should tv be (landscape or portrait)
+# tv 应采用什么方向（横向 landscape 或 纵向 portrait）
 orientation = "landscape"
-# The theme to use for the UI
-# A list of builtin themes can be found in the `themes` directory of the television
-# repository. You may also create your own theme by creating a new file in a `themes`
-# directory in your configuration directory (see the `config.toml` location above).
-theme = "default"
+# UI 使用的主题
+# 内置主题列表可以在 television 仓库的 `themes` 目录中找到。
+# 您也可以在配置目录下的 `themes` 目录中创建新文件来创建自定义主题
+# （参见上面的 config.toml 位置）。
+theme = "catppuccin-mocha-mauve"
 
-# Feature-specific configurations
-# Each feature can have its own configuration section
+# 特定功能配置
+# 每个功能都可以有自己的配置部分
 [ui.input_bar]
-# Where to place the input bar in the UI (top or bottom)
+# 输入栏在 UI 中的放置位置（顶部 top 或 底部 bottom）
 position = "top"
-# The input prompt string (defaults to ">" if not specified)
+# 输入提示字符串（如果未指定，默认为 ">"）
 prompt = ">"
 # header = "{}"
 # padding = {"left": 0, "right": 0, "top": 0, "bottom": 0}
 border_type = "rounded" # https://docs.rs/ratatui/latest/ratatui/widgets/block/enum.BorderType.html#variants
 
 [ui.status_bar]
-# Status bar separators (bubble):
+# 状态栏分隔符（气泡风格）：
 #separator_open = ""
 #separator_close = ""
-# Status bar separators (box):
+# 状态栏分隔符（方框风格）：
 separator_open = ""
 separator_close = ""
 hidden = false
@@ -80,7 +80,7 @@ border_type = "rounded"
 # padding = {"left": 0, "right": 0, "top": 0, "bottom": 0}
 
 [ui.preview_panel]
-# Preview panel size (percentage of screen width/height)
+# 预览面板大小（屏幕宽度/高度的百分比）
 size = 50
 #header = ""
 #footer = ""
@@ -90,41 +90,41 @@ border_type = "rounded"
 hidden = false
 
 [ui.help_panel]
-# Whether to split the help panel by categories
+# 是否按类别拆分帮助面板
 show_categories = true
 hidden = true
 
 [ui.remote_control]
-# Whether to show channel descriptions in remote control mode
+# 是否在遥控模式下显示频道描述
 show_channel_descriptions = true
-# Whether to sort channels alphabetically
+# 是否按字母顺序对频道进行排序
 sort_alphabetically = true
 # disabled = false
 
-# Theme color overrides
+# 主题颜色覆盖
 # ---------------------
-# You can override specific colors from the selected theme by adding them here.
-# This allows you to customize the appearance without creating a full theme file.
-# Colors can be specified as ANSI color names (e.g., "red", "bright-blue") or
-# as hex values (e.g., "#ff0000", "#1e1e2e").
+# 您可以在此处添加特定颜色来覆盖所选主题的颜色。
+# 这允许您自定义外观而无需创建完整的主题文件。
+# 颜色可以指定为 ANSI 颜色名称（例如 "red", "bright-blue"）或
+# 十六进制值（例如 "#ff0000", "#1e1e2e"）。
 #
-# Example overrides:
+# 覆盖示例：
 # [ui.theme_overrides]
 # background = "#000000"
 # text_fg = "#ffffff"
 # selection_bg = "#444444"
 # match_fg = "#ff0000"
 
-# Keybindings and Events
+# 按键绑定和事件
 # ----------------------------------------------------------------------------
 #
 [keybindings]
-# Application control
+# 应用程序控制
 # ------------------
 esc = "quit"
 ctrl-c = "quit"
 
-# Navigation and selection
+# 导航和选择
 # -----------------------
 down = "select_next_entry"
 ctrl-n = "select_next_entry"
@@ -133,30 +133,30 @@ up = "select_prev_entry"
 ctrl-p = "select_prev_entry"
 ctrl-k = "select_prev_entry"
 
-# History navigation
+# 历史记录导航
 # -----------------
 ctrl-up = "select_prev_history"
 ctrl-down = "select_next_history"
 
-# Multi-selection
+# 多选
 # --------------
 tab = "toggle_selection_down"
 backtab = "toggle_selection_up"
 enter = "confirm_selection"
 
-# Preview panel control
+# 预览面板控制
 # --------------------
 pagedown = "scroll_preview_half_page_down"
 pageup = "scroll_preview_half_page_up"
 ctrl-f = "cycle_previews"
 
-# Data operations
+# 数据操作
 # --------------
 ctrl-y = "copy_entry_to_clipboard"
 ctrl-r = "reload_source"
 ctrl-s = "cycle_sources"
 
-# UI Features
+# UI 功能
 # ----------
 ctrl-t = "toggle_remote_control"
 ctrl-x = "toggle_action_picker"
@@ -165,7 +165,7 @@ ctrl-h = "toggle_help"
 f12 = "toggle_status_bar"
 ctrl-l = "toggle_layout"
 
-# Input field actions
+# 输入字段动作
 # ----------------------------------------
 backspace = "delete_prev_char"
 ctrl-w = "delete_prev_word"
@@ -178,28 +178,25 @@ ctrl-a = "go_to_input_start"
 end = "go_to_input_end"
 ctrl-e = "go_to_input_end"
 
-# Shell integration
+# Shell 集成
 # ----------------------------------------------------------------------------
 #
-# The shell integration feature allows you to use television as a picker for
-# your shell commands (as well as your shell history with <CTRL-R>).
-# E.g. typing `git checkout <CTRL-T>` will open television with a list of
-# branches to choose from.
+# Shell 集成功能允许您使用 television 作为 Shell 命令的选择器
+# （以及使用 <CTRL-R> 搜索 Shell 历史记录）。
+# 例如：输入 `git checkout <CTRL-T>` 将打开 television 并显示可供选择的分支列表。
 
 [shell_integration]
-# This specifies the default fallback channel if no other channel is matched.
+# 如果没有匹配到其他频道，此处指定默认的回退频道。
 fallback_channel = "files"
 
 [shell_integration.channel_triggers]
-# Add your channel triggers here. Each key is a channel that will be triggered
-# by the corresponding commands.
-# Example: say you want the following commands to trigger the following channels
-# when pressing <CTRL-T>:
-#          `git checkout`  should trigger the `git-branches` channel
-#          `ls`            should trigger the `dirs` channel
-#          `cat` and `cp`  should trigger the `files` channel
+# 在此处添加您的频道触发器。每个键都是一个频道，将由相应的命令触发。
+# 示例：假设您希望在按下 <CTRL-T> 时让以下命令触发以下频道：
+#          `git checkout`  应触发 `git-branches` 频道
+#          `ls`            应触发 `dirs` 频道
+#          `cat` 和 `cp`   应触发 `files` 频道
 #
-# You would add the following to your configuration file:
+# 您可以将以下内容添加到配置文件中：
 # ```
 # [shell_integration.channel_triggers]
 # "git-branches" = ["git checkout"]
@@ -246,9 +243,13 @@ fallback_channel = "files"
 
 
 [shell_integration.keybindings]
-# controls which key binding should trigger tv
-# for shell autocomplete
-"smart_autocomplete" = "ctrl-t"
-# controls which keybinding should trigger tv
-# for command history
+# 控制哪个按键绑定应触发 tv
+# 用于 Shell 自动补全
+"smart_autocomplete" = "ctrl-f"
+# 控制哪个按键绑定应触发 tv
+# 用于命令历史记录
 "command_history" = "ctrl-r"
+
+[previewers.file]
+# 使用 bat 中配置的主题
+theme = "Catppuccin Mocha"
