@@ -13,6 +13,7 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-mini/mini.icons",
       "MeanderingProgrammer/render-markdown.nvim",
+      "saghen/blink.cmp",
       {
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",

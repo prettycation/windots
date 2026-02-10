@@ -13,5 +13,10 @@ use = "yazi-rs/plugins:zoom"
 rev = "2301ff8"
 hash = "91bf6f0332ee6d72eab0dc2e64382021"
 
+[[plugin.deps]]
+use = "cap153/tv"
+rev = "b6b1f12"
+hash = "781c565bf90759ef5f72e648cf1fb6f8"
+
 [flavor]
 deps = []

@@ -126,8 +126,8 @@ widgets:
   media:
     type: "yasb.media.MediaWidget"
     options:
-      label: "{title}"
-      label_alt: "{artist}" # 点击后显示歌手
+      label: "{artist}"
+      label_alt: "{title}"
       max_field_size:
         label: 40
         label_alt: 40
@@ -148,8 +148,8 @@ widgets:
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
-      label: "{win[title]}"
-      label_alt: "{win[process][name]}" # 点击后显示进程名 (如 chrome.exe)
+      label: "{win[process][name]}"
+      label_alt: "{win[title]}"
       label_no_window: ""
       label_icon: false
       label_icon_size: 12
