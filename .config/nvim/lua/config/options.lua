@@ -11,8 +11,6 @@ if vim.fn.has("win32") == 1 then
     -- 指定 Shell (使用 .exe 明确路径)
     vim.opt.shell = vim.fn.executable("pwsh") == 1 and "pwsh.exe" or "powershell.exe"
     vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-
-    -- 清空引号，防止命令被当成字符串回显
     vim.opt.shellquote = ""
     vim.opt.shellxquote = ""
 

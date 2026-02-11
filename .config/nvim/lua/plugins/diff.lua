@@ -47,26 +47,23 @@ return {
       local function set_keymaps()
         -- 1. 界面启动快捷键
         vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", {
-          desc = "Diff Explorer (CodeDiff)",
+          desc = "CodeDiff: Diff Explorer",
           noremap = true,
           silent = true,
         })
         vim.keymap.set("n", "<leader>gf", "<cmd>CodeDiff file HEAD<cr>", {
-          desc = "Diff File vs HEAD",
+          desc = "CodeDiff: Diff File HEAD",
           noremap = true,
           silent = true,
         })
         vim.keymap.set("n", "<leader>gh", "<cmd>CodeDiff history<cr>", {
-          desc = "File History (CodeDiff)",
+          desc = "CodeDiff: Diff File History",
           noremap = true,
           silent = true,
         })
 
-        -- 2. 【修复】使用 Gitsigns 来实现“还原块” (替代失效的 do)
-        -- 只有在 CodeDiff 界面或普通编辑界面，只要是 Git 仓库文件，这个键都能用
+        -- 使用 Gitsigns 来实现还原块 (替代失效的 do)
         vim.keymap.set("n", "<leader>do", function()
-          -- 使用 LazyVim 内置的 gitsigns 插件重置当前块
-          -- 这比 CodeDiff 内部 API 更稳定，效果完全一样（撤销修改）
           require("gitsigns").reset_hunk()
         end, {
           desc = "Diff Obtain (Reset Hunk)",
