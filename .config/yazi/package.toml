@@ -18,5 +18,15 @@ use = "cap153/tv"
 rev = "b6b1f12"
 hash = "781c565bf90759ef5f72e648cf1fb6f8"
 
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "eca1861"
+hash = "158f863f60b43d077fef3b91e83d6087"
+
+[[plugin.deps]]
+use = "mikavilpas/easyjump.yazi:easyjump"
+rev = "6ff8419"
+hash = "56538d923a9bdca179e681812183578e"
+
 [flavor]
 deps = []

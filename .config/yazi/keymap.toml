@@ -13,6 +13,7 @@ keymap = [
   { on = "<C-f>", run = "plugin tv", desc = "通过 telivision 跳转到文件" },
   { on = "<C-t>", run = "plugin tv text", desc = "使用 neovim 打开文件并跳转到该字符串所在的位置" },
   { on = "<C-d>", run = "plugin tv dirs", desc = "通过 telivision 跳转到目录" },
+  { on = "f", run = "plugin easyjump", desc = "easyjump" },
 
   # Windows
   { on = [
