@@ -112,6 +112,13 @@ return {
               general_trigger_rule: 收到用户消息时，一般从【分析问题】阶段开始，除非用户明确指定阶段的名字。
           ]],
 
+      pcall(function()
+        local wk = require("which-key")
+        wk.add({
+          { "<leader>a", group = "ai" },
+        })
+      end),
+
       mappings = {
         ask = "<leader>aa",
         edit = "<leader>ae",
