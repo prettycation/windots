@@ -38,7 +38,7 @@ return {
       yazi_floating_window_border = "rounded",
       -- 快捷键设置
       keymaps = {
-        open_file_in_tab = nil,
+        open_file_in_tab = "nil",
       },
     },
   },
