@@ -6,4 +6,7 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "退出插入模式", silent = true 
 
 vim.keymap.set("c", "jk", "<Esc>", { desc = "退出命令模式", silent = true })
 
-vim.keymap.set("n", "<leader>ch", "<cmd>nohlsearch<CR>", { desc = "取消搜索高亮" })
+-- 禁用原生 diffget (do)
+vim.keymap.set("n", "do", "<Nop>", { noremap = true, silent = true })
+-- diffput (dp)
+vim.keymap.set("n", "dp", "<Nop>", { noremap = true, silent = true })

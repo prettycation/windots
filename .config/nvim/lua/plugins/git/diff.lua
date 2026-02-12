@@ -38,14 +38,21 @@ return {
       },
       -- 内部快捷键
       keymaps = {
-        view = { quit = "q", next_hunk = "]c", prev_hunk = "[c", diff_get = "do", toggle_stage = "-" },
+        view = {
+          quit = "q",
+          next_hunk = "]c",
+          prev_hunk = "[c",
+          diff_get = "do",
+          diff_put = "dp",
+          toggle_stage = "-",
+          toggle_explorer = "<leader>b",
+        },
       },
     },
 
     init = function()
-      -- 定义一个函数来设置键位
       local function set_keymaps()
-        -- 1. 界面启动快捷键
+        -- 界面启动快捷键
         vim.keymap.set("n", "<leader>gd", "<cmd>CodeDiff<cr>", {
           desc = "CodeDiff: Diff Explorer",
           noremap = true,
@@ -58,15 +65,6 @@ return {
         })
         vim.keymap.set("n", "<leader>gh", "<cmd>CodeDiff history<cr>", {
           desc = "CodeDiff: Diff File History",
-          noremap = true,
-          silent = true,
-        })
-
-        -- 使用 Gitsigns 来实现还原块 (替代失效的 do)
-        vim.keymap.set("n", "<leader>do", function()
-          require("gitsigns").reset_hunk()
-        end, {
-          desc = "Diff Obtain (Reset Hunk)",
           noremap = true,
           silent = true,
         })
