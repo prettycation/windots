@@ -6,6 +6,7 @@ try {
     chcp 65001 > $null
 } catch {}
 
+# 环境变量
 
 $env:EDITOR = "nvim"
 # Git Bash 路径
@@ -250,6 +251,12 @@ function lg { eza.exe -l -h -a --git --icons --time-style '+%Y-%m-%d %H:%M:%S' @
 
 # tree, 显示目录树。
 function tree { eza.exe -T --icons @args }
+
+# condaini，用于初始化 conda
+function condaini {
+    conda shell.powershell hook | Out-String | Invoke-Expression
+}
+
 
 # 别名
 if (-not (Get-Alias clear -ErrorAction SilentlyContinue)) { Set-Alias clear Clear-Host }
