@@ -3,12 +3,17 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     signs = {
-      add = { text = "+" },
-      change = { text = "~" },
+      add = { text = "│" },
+      change = { text = "│" },
       delete = { text = "_" },
       topdelete = { text = "‾" },
-      changedelete = { text = "~" },
+      changedelete = { text = "│" },
+      untracked = { text = "│" },
     },
+
+    numhl = false, -- 关闭行号高亮
+    signhl = true, -- 开启符号(竖线)颜色高亮
+    linehl = false, -- 关闭背景色
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
 
