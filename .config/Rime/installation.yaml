@@ -5,5 +5,5 @@ install_time: "Wed Nov 12 18:21:08 2025"
 # 同步目录名
 installation_id: "windows"
 # 同步目录
-sync_dir: 'F:\project\windots\.source\Rime\sync'
+sync_dir: 'F:\project\windots\.config\Rime\sync'
 rime_version: 1.13.1

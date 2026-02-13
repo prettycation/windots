@@ -1,0 +1,20 @@
+[user]
+	name = prettycation
+	email = a2095578831@outlook.com
+[core]
+	editor = nvim
+	quotepath = false
+[http]
+	proxy = http://127.0.0.1:7890
+[https]
+	proxy = http://127.0.0.1:7890
+[merge]
+	tool = codediff
+[init]
+	defaultBranch = main
+[diff]
+	algorithm = histogram
+[mergetool]
+	keepBackup = false
+[mergetool "codediff"]
+  cmd = nvim -f -c "CodeDiff merge \"$MERGED\""

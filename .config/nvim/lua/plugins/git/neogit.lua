@@ -12,7 +12,11 @@ return {
   },
   config = function()
     require("neogit").setup({
-      use_default_keymaps = true, -- 使用 Neogit 的默认键绑定
+      signs = {
+        hunk = { "", "" },
+        item = { "▶", "▼" },
+        section = { "▶", "▼" },
+      },
     })
   end,
 }

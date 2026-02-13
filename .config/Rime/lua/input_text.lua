@@ -1,0 +1,1 @@
+F:/project/windots/.source/Rime/plugins/rime-trans/lua/input_text.lua

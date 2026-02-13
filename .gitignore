@@ -3,9 +3,55 @@
 *.bak*
 sync.py
 lazy-lock.json
+
+# espanso
 password.yml
 account.yml
-sync/
+
+# Rime
+**/Rime/build/
+**/Rime/custom/
+**/Rime/dicts/
+**/Rime/sync/
+**/Rime/en.userdb/
+**/Rime/zc.userdb/
+
+**/Rime/lua/*
+!**/Rime/lua/input_text.lua
+!**/Rime/lua/log.lua
+!**/Rime/lua/simplehttp.dll
+!**/Rime/lua/json.lua
+!**/Rime/lua/sha2.lua
+!**/Rime/lua/trans-all.lua
+
+**/Rime/*.txt
+!**/Rime/custom*.txt
+**/Rime/*.yaml
+!**/Rime/*custom.yaml
+!**/Rime/installation.yaml
+**/Rime/*.md
+**/Rime/*.gram
+
+# FlowLaucher
+**/FlowLauncher/Settings/Plugins/
+**/FlowLauncher/Settings/*.json
+!**/FlowLauncher/Settings/Settings.json
+
+# SC_Starter
+**/SC_Starter/*.exe
+
+# Seanime
+**/Seanime/*
+!**/Seanime/config.toml
+
+# Windows PowerShell
+**/WindowsPowerShell/*
+!/WindowsPowerShell/Microsoft.PowerShell_profile.ps1
+!/WindowsPowerShell/profile.ps1
+
+# Windows Terminal
+**/WindowsTerminal/*
+!/WindowsTerminal/settings.json
 
 # 其他通用的忽略项
 __pycache__/
