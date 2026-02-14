@@ -281,7 +281,18 @@ if (Get-Command hl -ErrorAction SilentlyContinue) {
 }
 
 # ——— 配置 PSReadLine (补全、历史记录等)
-Set-PSReadLineOption -EditMode Windows
+Set-PSReadLineOption -EditMode Vi
+Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler {
+    param($Mode)
+
+    if ($Mode -eq 'Command') {
+        # Command 模式 -> 实心方块 (Blinking Block)
+        Write-Host -NoNewline "`e[1 q"
+    } else {
+        # Insert 模式 -> 竖线 (Blinking Bar)
+        Write-Host -NoNewline "`e[5 q"
+    }
+}
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
