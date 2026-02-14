@@ -1,3 +1,4 @@
 filter_exec: ".*WindowsTerminal\\.exe$"
 extra_includes:
   - "../match/_scoop.yml"
+  - "../match/_cargo.yml"
