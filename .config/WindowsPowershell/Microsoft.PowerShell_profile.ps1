@@ -383,7 +383,7 @@ $ENV:FZF_DEFAULT_OPTS=@"
 #([ScriptBlock]::Create((& scoop-search --hook | Out-String)))
 
 # 将 sfsu 集成到 PowerShell
-Invoke-Expression (&sfsu hook --disable cleanup --disable cache --disable status)
+Invoke-Expression (&sfsu hook --disable cleanup --disable cache --disable status --disable info --disable bucket)
 
 # Zoxide (smart cd) Initialization
 # 将 zoxide 的钩子注入到修改过的提示符中。
