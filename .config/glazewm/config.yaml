@@ -122,6 +122,7 @@ window_rules:
       - window_process: { equals: "STranslate" }
       - window_process: { equals: "EcoPaste" }
       - window_process: { equals: "mpv" }
+
 # ----------------------------------------------------------------------------------
 # [ BINDING MODES - 绑定模式 ]
 # ---------------------------------------------------------------------------------
@@ -129,14 +130,22 @@ binding_modes:
   # 启用时，可以通过箭头键或 HJKL 调整焦点窗口的大小
   - name: "resize"
     keybindings:
-      - commands: ["resize --width -2%"]
-        bindings: ["l", "left"]
       - commands: ["resize --width +2%"]
-        bindings: ["h", "right"]
+        bindings: ["h", "left"]
+      - commands: ["resize --width -2%"]
+        bindings: ["shift+h", "left"]
+      - commands: ["resize --width +2%"]
+        bindings: ["l", "right"]
+      - commands: ["resize --width -2%"]
+        bindings: ["shift+l", "right"]
       - commands: ["resize --height +2%"]
         bindings: ["k", "up"]
       - commands: ["resize --height -2%"]
+        bindings: ["shift+k", "up"]
+      - commands: ["resize --height +2%"]
         bindings: ["j", "down"]
+      - commands: ["resize --height -2%"]
+        bindings: ["shift+j", "down"]
       # 按 Escape 或 i 返回默认按键绑定
       - commands: ["wm-disable-binding-mode --name resize"]
         bindings: ["escape", "i"]

@@ -394,4 +394,4 @@ Invoke-Expression (& { (tv init power-shell) -join "`n" })
 
 # 初始化 md
 
-. "$(scoop prefix Cishoon.md)\md.ps1"
+Import-Module MessageDump
