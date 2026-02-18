@@ -1,6 +1,8 @@
 return {
   {
     "mg979/vim-visual-multi",
+    -- 在 vscode 中加载
+    cond = true,
     branch = "master",
     event = "BufReadPost", -- 打开文件后加载
     init = function()

@@ -19,3 +19,10 @@ if vim.fn.has("win32") == 1 then
     vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
   end)
 end
+
+if vim.g.vscode then
+  vim.notify = require("vscode").notify
+  vim.g.clipboard = vim.g.vscode_clipboard
+  vim.cmd.syntax("off")
+  return
+end

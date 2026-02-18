@@ -1,6 +1,8 @@
 return {
   {
     "rainzm/flash-zh.nvim",
+    -- 在 vscode 中加载
+    cond = true,
     dependencies = { "folke/flash.nvim" },
     event = "VeryLazy",
     keys = {
