@@ -99,6 +99,9 @@ patch:
     windowsterminal.exe:
       ascii_mode: true
       vim_mode: true
+    wezterm-gui.exe:
+      ascii_mode: true
+      vim_mode: true
     cmd.exe:
       ascii_mode: true
     Code.exe:

@@ -115,6 +115,7 @@ window_rules:
       - window_process: { equals: "MinerU" }
       - window_process: { equals: "rustdesk" }
       - window_process: { equals: "WindowsTerminal" }
+      - window_process: { equals: "wezterm-gui" }
       - window_process: { equals: "wandacloud" }
       - window_process: { equals: "clash-verge" }
       - window_process: { equals: "pot" }
@@ -161,7 +162,9 @@ binding_modes:
 # ----------------------------------------------------------------------------------
 keybindings:
   # 1. 启动终端 (Alt+T)
-  - commands: ["shell-exec wt"]
+  # - commands: ["shell-exec wt"]
+  - commands:
+      ["shell-exec %SCOOP%/apps/wez.wezterm/current/app/wezterm-gui.exe"]
     bindings: ["alt+t"]
 
   # 2. 应用启动器: 使用 Flow Launcher 自身设置的 Alt+Space
