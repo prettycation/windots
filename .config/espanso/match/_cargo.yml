@@ -5,6 +5,9 @@ matches:
   - trigger: "c.is"
     replace: "cargo binstall $|$"
 
+  - trigger: "c.ui"
+    replace: "cargo uninstall $|$"
+
   - trigger: "c.ul"
     replace: "cargo install-update -l"
 

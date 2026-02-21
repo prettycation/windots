@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-01-25T20:35:22.9123491+08:00",
+  "last_update": "2026-02-21T20:19:26.6121165+08:00",
   "aria2-max-connection-per-server": "16",
   "aria2-split": "16",
   "aria2-min-split-size": "1M",
@@ -11,5 +11,6 @@
   "aria2-enabled": true,
   "abgox-abyss-app-shortcuts-action": "1",
   "ignore_running_processes": true,
-  "abgox-abyss-app-uninstall-action": "1"
+  "abgox-abyss-app-uninstall-action": "1",
+  "show_manifest": true
 }

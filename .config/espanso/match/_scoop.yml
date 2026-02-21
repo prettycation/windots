@@ -11,6 +11,9 @@ matches:
   - trigger: "s.cl"
     replace: "scoop cleanup *"
 
+  - trigger: "s.ck"
+    replace: "scoop checkup"
+
   - trigger: "s.ls"
     replace: "scoop list"
 
