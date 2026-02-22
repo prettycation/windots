@@ -2,3 +2,4 @@ filter_exec: ".*(WindowsTerminal|wezterm-gui)\\.exe$"
 extra_includes:
   - "../match/_scoop.yml"
   - "../match/_cargo.yml"
+  - "../match/_bitwarden.yml"

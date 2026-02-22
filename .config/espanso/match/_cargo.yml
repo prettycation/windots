@@ -2,8 +2,11 @@ matches:
   - trigger: "c.ls"
     replace: "cargo install --list"
 
-  - trigger: "c.is"
+  - trigger: "c.bis"
     replace: "cargo binstall $|$"
+
+  - trigger: "c.is"
+    replace: "cargo install --locked $|$"
 
   - trigger: "c.ui"
     replace: "cargo uninstall $|$"
